@@ -1,0 +1,226 @@
+[
+  {
+    "skill": "Python",
+    "title": "Kaggle Learn: Python",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/python",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Python",
+    "title": "The Python Tutorial (official docs)",
+    "type": "tutorial",
+    "url": "https://docs.python.org/3/tutorial/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Khan Academy: Statistics and Probability",
+    "type": "course",
+    "url": "https://www.khanacademy.org/math/statistics-probability",
+    "difficulty": "Beginner",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Seeing Theory: A Visual Introduction to Probability and Statistics",
+    "type": "tutorial",
+    "url": "https://seeing-theory.brown.edu/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Think Stats (free book)",
+    "type": "tutorial",
+    "url": "https://greenteapress.com/wp/think-stats-2e/",
+    "difficulty": "Intermediate",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Kaggle Learn: Intro to Machine Learning",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Machine Learning Specialization (Andrew Ng, Coursera)",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+    "difficulty": "Beginner",
+    "duration": "2 months"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Google Machine Learning Crash Course",
+    "type": "course",
+    "url": "https://developers.google.com/machine-learning/crash-course",
+    "difficulty": "Intermediate",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Kaggle Titanic: Machine Learning from Disaster",
+    "type": "project",
+    "url": "https://www.kaggle.com/c/titanic",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Pandas",
+    "title": "Kaggle Learn: Pandas",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/pandas",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Pandas",
+    "title": "10 Minutes to pandas (official docs)",
+    "type": "tutorial",
+    "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+    "difficulty": "Beginner",
+    "duration": "1 hour"
+  },
+  {
+    "skill": "Data Visualization",
+    "title": "Kaggle Learn: Data Visualization",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/data-visualization",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Data Visualization",
+    "title": "Seaborn Tutorial (official docs)",
+    "type": "tutorial",
+    "url": "https://seaborn.pydata.org/tutorial.html",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "Kaggle Learn: Intro to SQL",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/intro-to-sql",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "SQLBolt: Interactive SQL Lessons",
+    "type": "practice",
+    "url": "https://sqlbolt.com/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "HackerRank: SQL Practice",
+    "type": "practice",
+    "url": "https://www.hackerrank.com/domains/sql",
+    "difficulty": "Intermediate",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "Learn Git Branching (interactive)",
+    "type": "practice",
+    "url": "https://learngitbranching.js.org/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "GitHub Skills",
+    "type": "course",
+    "url": "https://skills.github.com/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "Pro Git (free book)",
+    "type": "tutorial",
+    "url": "https://git-scm.com/book/en/v2",
+    "difficulty": "Intermediate",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "The Modern JavaScript Tutorial (javascript.info)",
+    "type": "tutorial",
+    "url": "https://javascript.info/",
+    "difficulty": "Beginner",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "MDN: JavaScript Guide",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "freeCodeCamp: Learn to Code",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn",
+    "difficulty": "Beginner",
+    "duration": "30 hours"
+  },
+  {
+    "skill": "React",
+    "title": "React Official Docs: Learn React",
+    "type": "tutorial",
+    "url": "https://react.dev/learn",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "React",
+    "title": "React Tutorial: Build a Tic-Tac-Toe Game",
+    "type": "project",
+    "url": "https://react.dev/learn/tutorial-tic-tac-toe",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "AWS",
+    "title": "AWS Getting Started Resource Center",
+    "type": "tutorial",
+    "url": "https://aws.amazon.com/getting-started/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "AWS",
+    "title": "AWS Cloud Practitioner Essentials",
+    "type": "course",
+    "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Docker",
+    "title": "Docker Curriculum - Getting Started",
+    "type": "tutorial",
+    "url": "https://docker-curriculum.com/",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Linux",
+    "title": "Linux Command Line Tutorial",
+    "type": "tutorial",
+    "url": "https://linuxcommand.org/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  }
+]
