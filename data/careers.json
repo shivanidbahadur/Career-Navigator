@@ -1,0 +1,1067 @@
+[
+  {
+    "career_id": "data_scientist",
+    "name": "Data Scientist",
+    "description": "Analyzes data and builds predictive models to drive business decisions.",
+    "interest_tags": [
+      "AI",
+      "Data"
+    ],
+    "skills": [
+      {
+        "skill": "Python",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Machine Learning",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "SQL",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Pandas",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Visualization",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Deep Learning",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Feature Engineering",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Communication",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Experiment Design",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Excel",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "R",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Big Data",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "data_analyst",
+    "name": "Data Analyst",
+    "description": "Turns raw data into reports and dashboards that inform business decisions.",
+    "interest_tags": [
+      "Data",
+      "Business"
+    ],
+    "skills": [
+      {
+        "skill": "Excel",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "SQL",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Visualization",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Python",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Pandas",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Power BI",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Communication",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Business Acumen",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Data Cleaning",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Tableau",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Google Sheets",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Critical Thinking",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "ml_engineer",
+    "name": "ML Engineer",
+    "description": "Builds and deploys machine learning models into production systems.",
+    "interest_tags": [
+      "AI",
+      "Engineering"
+    ],
+    "skills": [
+      {
+        "skill": "Python",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Machine Learning",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Deep Learning",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Structures",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Software Engineering",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Model Deployment",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "TensorFlow",
+        "importance": "Optional",
+        "weight": 3
+      },
+      {
+        "skill": "Docker",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "MLOps",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "software_engineer",
+    "name": "Software Engineer",
+    "description": "Designs, builds and maintains software applications and systems.",
+    "interest_tags": [
+      "Engineering",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "Data Structures",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Algorithms",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Python",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Git",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Object Oriented Programming",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "System Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Testing",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Software Engineering",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Debugging",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Agile",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "cloud_engineer",
+    "name": "Cloud Engineer",
+    "description": "Builds and manages cloud infrastructure and deployment pipelines.",
+    "interest_tags": [
+      "Cloud",
+      "Infrastructure"
+    ],
+    "skills": [
+      {
+        "skill": "Cloud Computing",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Linux",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Networking",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Docker",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Kubernetes",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Python",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Security",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "System Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Infrastructure as Code",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Scripting",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "web_developer",
+    "name": "Web Developer",
+    "description": "Builds websites and web applications, front-end and back-end.",
+    "interest_tags": [
+      "Web",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "HTML",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "CSS",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "JavaScript",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "React",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Node.js",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Responsive Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "REST API",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Testing",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "cybersecurity_analyst",
+    "name": "Cybersecurity Analyst",
+    "description": "Protects systems and networks from security threats and breaches.",
+    "interest_tags": [
+      "Security",
+      "Engineering"
+    ],
+    "skills": [
+      {
+        "skill": "Security",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Networking",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Linux",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Cryptography",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Incident Response",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Ethical Hacking",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Risk Assessment",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Python",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Vulnerability Assessment",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Compliance",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "devops_engineer",
+    "name": "DevOps Engineer",
+    "description": "Automates and manages build, deployment, and infrastructure pipelines.",
+    "interest_tags": [
+      "Engineering",
+      "Cloud"
+    ],
+    "skills": [
+      {
+        "skill": "Linux",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Docker",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Kubernetes",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "CI/CD",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Scripting",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Networking",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "System Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Infrastructure as Code",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Python",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Security",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "business_analyst",
+    "name": "Business Analyst",
+    "description": "Bridges business needs and technical teams using data-driven insights.",
+    "interest_tags": [
+      "Business",
+      "Data"
+    ],
+    "skills": [
+      {
+        "skill": "Communication",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Business Acumen",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Requirements Gathering",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Excel",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "SQL",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Visualization",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Critical Thinking",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Power BI",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Stakeholder Management",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "mobile_app_developer",
+    "name": "Mobile App Developer",
+    "description": "Builds mobile applications for Android and iOS platforms.",
+    "interest_tags": [
+      "Software",
+      "Mobile"
+    ],
+    "skills": [
+      {
+        "skill": "Mobile Development",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Java",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Kotlin",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Swift",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "REST API",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "UI Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Testing",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "product_manager",
+    "name": "Product Manager",
+    "description": "Defines product vision and coordinates teams to build and ship it.",
+    "interest_tags": [
+      "Business",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "Communication",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Business Acumen",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Requirements Gathering",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Stakeholder Management",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Critical Thinking",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Data Visualization",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Agile",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "UI Design",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "ui_ux_designer",
+    "name": "UI/UX Designer",
+    "description": "Designs user interfaces and experiences that are usable and visually clear.",
+    "interest_tags": [
+      "Design",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "UI Design",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "UX Research",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Wireframing",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Prototyping",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Responsive Design",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Communication",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "HTML",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "CSS",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Critical Thinking",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "qa_engineer",
+    "name": "QA Engineer",
+    "description": "Tests software to find bugs and ensure quality before release.",
+    "interest_tags": [
+      "Engineering",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "Testing",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Problem Solving",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Debugging",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Python",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Test Automation",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Agile",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "network_engineer",
+    "name": "Network Engineer",
+    "description": "Designs, builds and maintains an organization's computer networks.",
+    "interest_tags": [
+      "Infrastructure",
+      "Engineering"
+    ],
+    "skills": [
+      {
+        "skill": "Networking",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Linux",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Security",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Troubleshooting",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Scripting",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "System Design",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "ai_research_intern",
+    "name": "AI Research Intern",
+    "description": "Explores and experiments with new machine learning methods and papers.",
+    "interest_tags": [
+      "AI",
+      "Research"
+    ],
+    "skills": [
+      {
+        "skill": "Python",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Machine Learning",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Deep Learning",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Statistics",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Research Methods",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Linear Algebra",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Feature Engineering",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Git",
+        "importance": "Recommended",
+        "weight": 2
+      },
+      {
+        "skill": "Documentation",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  }
+]
