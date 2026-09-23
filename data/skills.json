@@ -1,0 +1,11 @@
+{
+  "synonyms": {
+    "python3": "Python",
+    "py": "Python",
+    "ml": "Machine Learning"
+  },
+  "prerequisites": {
+    "Statistics": ["Python"],
+    "Machine Learning": ["Python", "Statistics"]
+  }
+}
