@@ -1,0 +1,1170 @@
+[
+  {
+    "skill": "Python",
+    "title": "Kaggle Learn: Python",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/python",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Python",
+    "title": "The Python Tutorial (official docs)",
+    "type": "tutorial",
+    "url": "https://docs.python.org/3/tutorial/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Khan Academy: Statistics and Probability",
+    "type": "course",
+    "url": "https://www.khanacademy.org/math/statistics-probability",
+    "difficulty": "Beginner",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Seeing Theory: A Visual Introduction to Probability and Statistics",
+    "type": "tutorial",
+    "url": "https://seeing-theory.brown.edu/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Statistics",
+    "title": "Think Stats (free book)",
+    "type": "tutorial",
+    "url": "https://greenteapress.com/wp/think-stats-2e/",
+    "difficulty": "Intermediate",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Kaggle Learn: Intro to Machine Learning",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Machine Learning Specialization (Andrew Ng, Coursera)",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+    "difficulty": "Beginner",
+    "duration": "2 months"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Google Machine Learning Crash Course",
+    "type": "course",
+    "url": "https://developers.google.com/machine-learning/crash-course",
+    "difficulty": "Intermediate",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Machine Learning",
+    "title": "Kaggle Titanic: Machine Learning from Disaster",
+    "type": "project",
+    "url": "https://www.kaggle.com/c/titanic",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Pandas",
+    "title": "Kaggle Learn: Pandas",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/pandas",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Pandas",
+    "title": "10 Minutes to pandas (official docs)",
+    "type": "tutorial",
+    "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+    "difficulty": "Beginner",
+    "duration": "1 hour"
+  },
+  {
+    "skill": "Data Visualization",
+    "title": "Kaggle Learn: Data Visualization",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/data-visualization",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Data Visualization",
+    "title": "Seaborn Tutorial (official docs)",
+    "type": "tutorial",
+    "url": "https://seaborn.pydata.org/tutorial.html",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "Kaggle Learn: Intro to SQL",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/intro-to-sql",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "SQLBolt: Interactive SQL Lessons",
+    "type": "practice",
+    "url": "https://sqlbolt.com/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SQL",
+    "title": "HackerRank: SQL Practice",
+    "type": "practice",
+    "url": "https://www.hackerrank.com/domains/sql",
+    "difficulty": "Intermediate",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "Learn Git Branching (interactive)",
+    "type": "practice",
+    "url": "https://learngitbranching.js.org/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "GitHub Skills",
+    "type": "course",
+    "url": "https://skills.github.com/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Git",
+    "title": "Pro Git (free book)",
+    "type": "tutorial",
+    "url": "https://git-scm.com/book/en/v2",
+    "difficulty": "Intermediate",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "The Modern JavaScript Tutorial (javascript.info)",
+    "type": "tutorial",
+    "url": "https://javascript.info/",
+    "difficulty": "Beginner",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "MDN: JavaScript Guide",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "JavaScript",
+    "title": "freeCodeCamp: Learn to Code",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn",
+    "difficulty": "Beginner",
+    "duration": "30 hours"
+  },
+  {
+    "skill": "React",
+    "title": "React Official Docs: Learn React",
+    "type": "tutorial",
+    "url": "https://react.dev/learn",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "React",
+    "title": "React Tutorial: Build a Tic-Tac-Toe Game",
+    "type": "project",
+    "url": "https://react.dev/learn/tutorial-tic-tac-toe",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "AWS",
+    "title": "AWS Getting Started Resource Center",
+    "type": "tutorial",
+    "url": "https://aws.amazon.com/getting-started/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "AWS",
+    "title": "AWS Cloud Practitioner Essentials",
+    "type": "course",
+    "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Agile",
+    "title": "Atlassian: Agile Coach",
+    "type": "tutorial",
+    "url": "https://www.atlassian.com/agile",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Agile",
+    "title": "Scrum.org: Learning Pathway",
+    "type": "course",
+    "url": "https://www.scrum.org/pathway",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Algorithms",
+    "title": "GeeksforGeeks: Fundamentals of Algorithms",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/fundamentals-of-algorithms/",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Algorithms",
+    "title": "freeCodeCamp: JavaScript Algorithms and Data Structures",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
+    "difficulty": "Intermediate",
+    "duration": "40 hours"
+  },
+  {
+    "skill": "Big Data",
+    "title": "GeeksforGeeks: Big Data Analytics",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/big-data-analytics/",
+    "difficulty": "Intermediate",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Big Data",
+    "title": "Apache Spark: Quick Start Guide",
+    "type": "tutorial",
+    "url": "https://spark.apache.org/docs/latest/quick-start.html",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Business Acumen",
+    "title": "Coursera: Business Foundations",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/wharton-business-foundations",
+    "difficulty": "Beginner",
+    "duration": "1 month"
+  },
+  {
+    "skill": "Business Acumen",
+    "title": "Khan Academy: Careers and Business",
+    "type": "course",
+    "url": "https://www.khanacademy.org/college-careers-more",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "CI/CD",
+    "title": "GitHub Actions Documentation",
+    "type": "tutorial",
+    "url": "https://docs.github.com/en/actions",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "CI/CD",
+    "title": "Atlassian: Continuous Integration Guide",
+    "type": "tutorial",
+    "url": "https://www.atlassian.com/continuous-delivery/continuous-integration",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "CSS",
+    "title": "MDN: CSS Guide",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "CSS",
+    "title": "freeCodeCamp: Responsive Web Design",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    "difficulty": "Beginner",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Cloud Computing",
+    "title": "AWS Cloud Practitioner Essentials",
+    "type": "course",
+    "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Cloud Computing",
+    "title": "Microsoft Learn: Azure Fundamentals",
+    "type": "course",
+    "url": "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals/",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Communication",
+    "title": "Coursera: Improving Communication Skills",
+    "type": "course",
+    "url": "https://www.coursera.org/learn/wharton-communication-skills",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Communication",
+    "title": "Toastmasters International: Free Resources",
+    "type": "tutorial",
+    "url": "https://www.toastmasters.org/resources",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Compliance",
+    "title": "IAPP: Privacy and Compliance Resources",
+    "type": "tutorial",
+    "url": "https://iapp.org/resources/",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Compliance",
+    "title": "Coursera: Search - Compliance",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=compliance",
+    "difficulty": "Beginner",
+    "duration": "varies"
+  },
+  {
+    "skill": "Critical Thinking",
+    "title": "Coursera: Logic and Critical Thinking Specialization",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/logic-critical-thinking",
+    "difficulty": "Beginner",
+    "duration": "1 month"
+  },
+  {
+    "skill": "Critical Thinking",
+    "title": "Khan Academy: Reasoning and Problem Solving",
+    "type": "course",
+    "url": "https://www.khanacademy.org/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Cryptography",
+    "title": "Khan Academy: Cryptography",
+    "type": "course",
+    "url": "https://www.khanacademy.org/computing/computer-science/cryptography",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Cryptography",
+    "title": "GeeksforGeeks: Cryptography and its Types",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/cryptography-and-its-types/",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Data Cleaning",
+    "title": "Kaggle Learn: Data Cleaning",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/data-cleaning",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Data Cleaning",
+    "title": "GeeksforGeeks: Data Cleaning",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/data-cleaning/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Data Structures",
+    "title": "GeeksforGeeks: Data Structures",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/data-structures/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Data Structures",
+    "title": "freeCodeCamp: JavaScript Algorithms and Data Structures",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
+    "difficulty": "Intermediate",
+    "duration": "40 hours"
+  },
+  {
+    "skill": "Debugging",
+    "title": "GeeksforGeeks: Debugging in Software Engineering",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/debugging-in-software-engineering/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Debugging",
+    "title": "MDN: What Went Wrong (Debugging JavaScript)",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_went_wrong",
+    "difficulty": "Beginner",
+    "duration": "1 hour"
+  },
+  {
+    "skill": "Deep Learning",
+    "title": "Kaggle Learn: Intro to Deep Learning",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/intro-to-deep-learning",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Deep Learning",
+    "title": "Deep Learning Specialization (Coursera)",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/deep-learning",
+    "difficulty": "Intermediate",
+    "duration": "2 months"
+  },
+  {
+    "skill": "Docker",
+    "title": "Docker: Get Started Guide",
+    "type": "tutorial",
+    "url": "https://docs.docker.com/get-started/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Docker",
+    "title": "freeCodeCamp: Docker Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/docker/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Documentation",
+    "title": "Google Developer Documentation Style Guide",
+    "type": "tutorial",
+    "url": "https://developers.google.com/style",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Documentation",
+    "title": "Write the Docs: Documentation Guide",
+    "type": "tutorial",
+    "url": "https://www.writethedocs.org/guide/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Ethical Hacking",
+    "title": "GeeksforGeeks: Ethical Hacking",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/ethical-hacking/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Ethical Hacking",
+    "title": "TryHackMe: Learn Cyber Security",
+    "type": "practice",
+    "url": "https://tryhackme.com/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Excel",
+    "title": "Microsoft: Excel Training",
+    "type": "tutorial",
+    "url": "https://support.microsoft.com/en-us/excel",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Excel",
+    "title": "GCFGlobal: Excel Tutorials",
+    "type": "course",
+    "url": "https://edu.gcfglobal.org/en/excel/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Experiment Design",
+    "title": "Khan Academy: Designing Studies",
+    "type": "course",
+    "url": "https://www.khanacademy.org/math/statistics-probability/designing-studies",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Experiment Design",
+    "title": "Coursera: Search - Experiment Design",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=experiment%20design",
+    "difficulty": "Intermediate",
+    "duration": "varies"
+  },
+  {
+    "skill": "Feature Engineering",
+    "title": "Kaggle Learn: Feature Engineering",
+    "type": "course",
+    "url": "https://www.kaggle.com/learn/feature-engineering",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Feature Engineering",
+    "title": "GeeksforGeeks: What is Feature Engineering",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/what-is-feature-engineering/",
+    "difficulty": "Intermediate",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Google Sheets",
+    "title": "GCFGlobal: Google Sheets Tutorials",
+    "type": "course",
+    "url": "https://edu.gcfglobal.org/en/googlespreadsheets/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Google Sheets",
+    "title": "Google: Docs Editors Help",
+    "type": "tutorial",
+    "url": "https://support.google.com/docs/topic/9054603",
+    "difficulty": "Beginner",
+    "duration": "1 hour"
+  },
+  {
+    "skill": "HTML",
+    "title": "MDN: HTML Guide",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "HTML",
+    "title": "W3Schools: HTML Tutorial",
+    "type": "tutorial",
+    "url": "https://www.w3schools.com/html/default.asp",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Incident Response",
+    "title": "GeeksforGeeks: Incident Response",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/incident-response/",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Incident Response",
+    "title": "SANS: Reading Room",
+    "type": "tutorial",
+    "url": "https://www.sans.org/white-papers/",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Infrastructure as Code",
+    "title": "Terraform: Introduction",
+    "type": "tutorial",
+    "url": "https://developer.hashicorp.com/terraform/intro",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Infrastructure as Code",
+    "title": "AWS: CloudFormation Documentation",
+    "type": "tutorial",
+    "url": "https://docs.aws.amazon.com/cloudformation/",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Java",
+    "title": "Oracle: The Java Tutorials",
+    "type": "tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Java",
+    "title": "W3Schools: Java Tutorial",
+    "type": "tutorial",
+    "url": "https://www.w3schools.com/java/default.asp",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Kotlin",
+    "title": "Kotlin: Getting Started",
+    "type": "tutorial",
+    "url": "https://kotlinlang.org/docs/getting-started.html",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Kotlin",
+    "title": "Android Developers: Kotlin Bootcamp",
+    "type": "course",
+    "url": "https://developer.android.com/courses/kotlin-bootcamp/overview",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Kubernetes",
+    "title": "Kubernetes: Official Tutorials",
+    "type": "tutorial",
+    "url": "https://kubernetes.io/docs/tutorials/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Kubernetes",
+    "title": "freeCodeCamp: Kubernetes Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/kubernetes/",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Linear Algebra",
+    "title": "Khan Academy: Linear Algebra",
+    "type": "course",
+    "url": "https://www.khanacademy.org/math/linear-algebra",
+    "difficulty": "Beginner",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Linear Algebra",
+    "title": "MIT OpenCourseWare: Linear Algebra",
+    "type": "course",
+    "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "difficulty": "Intermediate",
+    "duration": "1 month"
+  },
+  {
+    "skill": "Linux",
+    "title": "Linux Journey (interactive)",
+    "type": "practice",
+    "url": "https://linuxjourney.com/",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Linux",
+    "title": "freeCodeCamp: Linux Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/linux/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "MLOps",
+    "title": "Coursera: MLOps Specialization",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops",
+    "difficulty": "Intermediate",
+    "duration": "2 months"
+  },
+  {
+    "skill": "MLOps",
+    "title": "Google Cloud: MLOps Guide",
+    "type": "tutorial",
+    "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+    "difficulty": "Advanced",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Mobile Development",
+    "title": "Android Developers: Get Started",
+    "type": "tutorial",
+    "url": "https://developer.android.com/get-started",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Mobile Development",
+    "title": "Apple Developer: SwiftUI Tutorials",
+    "type": "tutorial",
+    "url": "https://developer.apple.com/tutorials/swiftui",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Model Deployment",
+    "title": "Coursera: Search - Model Deployment",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=model%20deployment",
+    "difficulty": "Intermediate",
+    "duration": "varies"
+  },
+  {
+    "skill": "Model Deployment",
+    "title": "Google Cloud: AI Platform Documentation",
+    "type": "tutorial",
+    "url": "https://cloud.google.com/ai-platform/docs",
+    "difficulty": "Advanced",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Networking",
+    "title": "Cisco Networking Academy",
+    "type": "course",
+    "url": "https://www.netacad.com/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Networking",
+    "title": "freeCodeCamp: Networking Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/networking/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Node.js",
+    "title": "Node.js: Official Guides",
+    "type": "tutorial",
+    "url": "https://nodejs.org/en/docs/guides",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Node.js",
+    "title": "freeCodeCamp: Back End Development and APIs",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "difficulty": "Intermediate",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "Object Oriented Programming",
+    "title": "GeeksforGeeks: OOP Concepts",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Object Oriented Programming",
+    "title": "freeCodeCamp: OOP Concepts Explained",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Power BI",
+    "title": "Microsoft Learn: Power BI Fundamentals",
+    "type": "course",
+    "url": "https://learn.microsoft.com/en-us/power-bi/fundamentals/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Power BI",
+    "title": "Power BI: Guided Learning",
+    "type": "tutorial",
+    "url": "https://powerbi.microsoft.com/en-us/learning/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Problem Solving",
+    "title": "GeeksforGeeks: Problem Solving in Software Engineering",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/problem-solving-in-software-engineering/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Problem Solving",
+    "title": "HackerRank: Practice",
+    "type": "practice",
+    "url": "https://www.hackerrank.com/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "Prototyping",
+    "title": "Figma: Resource Library",
+    "type": "tutorial",
+    "url": "https://www.figma.com/resource-library/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Prototyping",
+    "title": "Adobe XD: Tutorials",
+    "type": "tutorial",
+    "url": "https://helpx.adobe.com/xd/tutorials.html",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "R",
+    "title": "R for Data Science (free book)",
+    "type": "tutorial",
+    "url": "https://r4ds.hadley.nz/",
+    "difficulty": "Beginner",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "R",
+    "title": "CRAN: An Introduction to R",
+    "type": "tutorial",
+    "url": "https://cran.r-project.org/doc/manuals/r-release/R-intro.html",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "REST API",
+    "title": "MDN: HTTP Overview",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "REST API",
+    "title": "freeCodeCamp: API Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/apis/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Requirements Gathering",
+    "title": "GeeksforGeeks: Requirements Engineering Process",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/software-engineering-requirements-engineering-process/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Requirements Gathering",
+    "title": "Coursera: Search - Requirements Gathering",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=requirements%20gathering",
+    "difficulty": "Beginner",
+    "duration": "varies"
+  },
+  {
+    "skill": "Research Methods",
+    "title": "Coursera: Search - Research Methods",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=research%20methods",
+    "difficulty": "Beginner",
+    "duration": "varies"
+  },
+  {
+    "skill": "Research Methods",
+    "title": "Khan Academy: Statistics and Probability",
+    "type": "course",
+    "url": "https://www.khanacademy.org/math/statistics-probability",
+    "difficulty": "Beginner",
+    "duration": "20 hours"
+  },
+  {
+    "skill": "Responsive Design",
+    "title": "freeCodeCamp: Responsive Web Design",
+    "type": "course",
+    "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    "difficulty": "Beginner",
+    "duration": "15 hours"
+  },
+  {
+    "skill": "Responsive Design",
+    "title": "MDN: Responsive Design",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Risk Assessment",
+    "title": "NIST: Risk Management Framework",
+    "type": "tutorial",
+    "url": "https://csrc.nist.gov/projects/risk-management",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Risk Assessment",
+    "title": "Coursera: Search - Risk Assessment",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=risk%20assessment",
+    "difficulty": "Intermediate",
+    "duration": "varies"
+  },
+  {
+    "skill": "Scripting",
+    "title": "freeCodeCamp: Bash Scripting Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/bash/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Scripting",
+    "title": "The Python Tutorial (official docs)",
+    "type": "tutorial",
+    "url": "https://docs.python.org/3/tutorial/",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Security",
+    "title": "OWASP: Top Ten",
+    "type": "tutorial",
+    "url": "https://owasp.org/www-project-top-ten/",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Security",
+    "title": "freeCodeCamp: Security Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/security/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Software Engineering",
+    "title": "GeeksforGeeks: Software Engineering Tutorial",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/software-engineering/",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Software Engineering",
+    "title": "freeCodeCamp: Software Engineering Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/software-engineering/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Stakeholder Management",
+    "title": "Coursera: Search - Stakeholder Management",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=stakeholder%20management",
+    "difficulty": "Beginner",
+    "duration": "varies"
+  },
+  {
+    "skill": "Stakeholder Management",
+    "title": "PMI: Learning Resources",
+    "type": "tutorial",
+    "url": "https://www.pmi.org/learning",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Swift",
+    "title": "Swift.org: Documentation",
+    "type": "tutorial",
+    "url": "https://www.swift.org/documentation/",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Swift",
+    "title": "Apple Developer: SwiftUI Tutorials",
+    "type": "tutorial",
+    "url": "https://developer.apple.com/tutorials/swiftui",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "System Design",
+    "title": "GeeksforGeeks: System Design Tutorial",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/system-design-tutorial/",
+    "difficulty": "Intermediate",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "System Design",
+    "title": "freeCodeCamp: System Design Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/system-design/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Tableau",
+    "title": "Tableau: Get Started",
+    "type": "tutorial",
+    "url": "https://www.tableau.com/learn/get-started",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Tableau",
+    "title": "Tableau: Free Training Videos",
+    "type": "course",
+    "url": "https://www.tableau.com/learn/training",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "TensorFlow",
+    "title": "TensorFlow: Official Tutorials",
+    "type": "tutorial",
+    "url": "https://www.tensorflow.org/tutorials",
+    "difficulty": "Intermediate",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "TensorFlow",
+    "title": "Coursera: TensorFlow in Practice",
+    "type": "course",
+    "url": "https://www.coursera.org/professional-certificates/tensorflow-in-practice",
+    "difficulty": "Intermediate",
+    "duration": "1 month"
+  },
+  {
+    "skill": "Test Automation",
+    "title": "Selenium: Official Documentation",
+    "type": "tutorial",
+    "url": "https://www.selenium.dev/documentation/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Test Automation",
+    "title": "freeCodeCamp: Testing Articles",
+    "type": "tutorial",
+    "url": "https://www.freecodecamp.org/news/tag/testing/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Testing",
+    "title": "MDN: Testing Tools and Testing",
+    "type": "tutorial",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing",
+    "difficulty": "Beginner",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Testing",
+    "title": "GeeksforGeeks: Software Testing Basics",
+    "type": "tutorial",
+    "url": "https://www.geeksforgeeks.org/software-testing-basics/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Troubleshooting",
+    "title": "Coursera: Google IT Support Professional Certificate",
+    "type": "course",
+    "url": "https://www.coursera.org/professional-certificates/google-it-support",
+    "difficulty": "Beginner",
+    "duration": "2 months"
+  },
+  {
+    "skill": "Troubleshooting",
+    "title": "Cisco Networking Academy",
+    "type": "course",
+    "url": "https://www.netacad.com/",
+    "difficulty": "Beginner",
+    "duration": "10 hours"
+  },
+  {
+    "skill": "UI Design",
+    "title": "Google: Material Design Guidelines",
+    "type": "tutorial",
+    "url": "https://m3.material.io/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "UI Design",
+    "title": "Interaction Design Foundation: UI Design",
+    "type": "tutorial",
+    "url": "https://www.interaction-design.org/literature/topics/ui-design",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "UX Research",
+    "title": "Interaction Design Foundation: UX Research",
+    "type": "tutorial",
+    "url": "https://www.interaction-design.org/literature/topics/ux-research",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "UX Research",
+    "title": "Nielsen Norman Group: Articles",
+    "type": "tutorial",
+    "url": "https://www.nngroup.com/articles/",
+    "difficulty": "Intermediate",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Vulnerability Assessment",
+    "title": "NIST: National Vulnerability Database",
+    "type": "tutorial",
+    "url": "https://nvd.nist.gov/",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Vulnerability Assessment",
+    "title": "Coursera: Search - Vulnerability Assessment",
+    "type": "course",
+    "url": "https://www.coursera.org/search?query=vulnerability%20assessment",
+    "difficulty": "Intermediate",
+    "duration": "varies"
+  },
+  {
+    "skill": "Wireframing",
+    "title": "Balsamiq: Learn Wireframing",
+    "type": "tutorial",
+    "url": "https://balsamiq.com/learn/",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  },
+  {
+    "skill": "Wireframing",
+    "title": "Interaction Design Foundation: Wireframing",
+    "type": "tutorial",
+    "url": "https://www.interaction-design.org/literature/topics/wireframing",
+    "difficulty": "Beginner",
+    "duration": "2 hours"
+  }
+]
