@@ -8,20 +8,13 @@ PRIORITY_ORDER = {"High": 0, "Medium": 1, "Low": 2}
 
 # ---------- Reading data ----------
 def load_prerequisites():
-    """Read the prerequisite map from skills.json. {} if the file or key is missing."""
+    """Read the prerequisite map from skills.json. Returns empty dict if missing."""
     path = "data/skills.json"
     if not os.path.exists(path):
-        # TEMPORARY: used until M1 pushes skills.json
-        return {
-            "Machine Learning": ["Python", "Statistics"],
-            "Deep Learning": ["Machine Learning"],
-            "Data Visualization": ["Pandas"],
-            "Pandas": ["Python"],
-        }
+        return {}
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data.get("prerequisites", {})
-
 
 def load_resources():
     """Read data/resources.json. [] if it is missing."""

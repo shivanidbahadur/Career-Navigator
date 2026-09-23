@@ -1,0 +1,20 @@
+[
+  {"job_id": "j01", "title": "Python Developer Intern", "company": "Nimbus Tech", "type": "internship", "location": "Bangalore", "required_skills": ["Python", "Git", "SQL"]},
+  {"job_id": "j02", "title": "Data Analyst Intern", "company": "Insightify", "type": "internship", "location": "Remote", "required_skills": ["SQL", "Excel", "Power BI"]},
+  {"job_id": "j03", "title": "ML Engineer", "company": "Vertex AI Labs", "type": "job", "location": "Hyderabad", "required_skills": ["Python", "Machine Learning", "SQL", "Statistics"]},
+  {"job_id": "j04", "title": "Junior Web Developer", "company": "Webforge", "type": "job", "location": "Chennai", "required_skills": ["JavaScript", "React", "HTML", "CSS"]},
+  {"job_id": "j05", "title": "Cloud Support Associate", "company": "SkyStack Cloud", "type": "job", "location": "Pune", "required_skills": ["AWS", "Git", "Linux"]},
+  {"job_id": "j06", "title": "Data Science Intern", "company": "QuantEdge", "type": "internship", "location": "Remote", "required_skills": ["Python", "Machine Learning", "Statistics"]},
+  {"job_id": "j07", "title": "Frontend Developer Intern", "company": "Webforge", "type": "internship", "location": "Chennai", "required_skills": ["JavaScript", "React", "CSS"]},
+  {"job_id": "j08", "title": "Backend Developer", "company": "Nimbus Tech", "type": "job", "location": "Bangalore", "required_skills": ["Python", "SQL", "Git", "AWS"]},
+  {"job_id": "j09", "title": "Business Intelligence Analyst", "company": "Insightify", "type": "job", "location": "Mumbai", "required_skills": ["SQL", "Power BI", "Excel", "Statistics"]},
+  {"job_id": "j10", "title": "AI Research Intern", "company": "Vertex AI Labs", "type": "internship", "location": "Hyderabad", "required_skills": ["Python", "Machine Learning", "Deep Learning"]},
+  {"job_id": "j11", "title": "DevOps Engineer", "company": "SkyStack Cloud", "type": "job", "location": "Pune", "required_skills": ["AWS", "Git", "Python", "Linux"]},
+  {"job_id": "j12", "title": "Full Stack Developer Intern", "company": "Webforge", "type": "internship", "location": "Remote", "required_skills": ["JavaScript", "React", "Python", "SQL"]},
+  {"job_id": "j13", "title": "Data Engineer", "company": "QuantEdge", "type": "job", "location": "Bangalore", "required_skills": ["Python", "SQL", "AWS"]},
+  {"job_id": "j14", "title": "Excel & Reporting Analyst", "company": "Insightify", "type": "job", "location": "Chennai", "required_skills": ["Excel", "Power BI", "SQL"]},
+  {"job_id": "j15", "title": "Machine Learning Intern", "company": "QuantEdge", "type": "internship", "location": "Remote", "required_skills": ["Python", "Machine Learning", "Statistics"]},
+  {"job_id": "j16", "title": "Software Engineer Intern", "company": "Nimbus Tech", "type": "internship", "location": "Bangalore", "required_skills": ["Python", "Git", "JavaScript"]},
+  {"job_id": "j17", "title": "Cloud Solutions Intern", "company": "SkyStack Cloud", "type": "internship", "location": "Pune", "required_skills": ["AWS", "Linux", "Git"]},
+  {"job_id": "j18", "title": "React Developer", "company": "Webforge", "type": "job", "location": "Remote", "required_skills": ["JavaScript", "React", "HTML", "CSS", "Git"]}
+]

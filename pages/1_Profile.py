@@ -23,17 +23,15 @@ DONT_KNOW = "I don't know"
 
 # ---------- Skill normalization (M1's function, with a temporary fake) ----------
 try:
-    # TODO: ask Member 1 for the exact file name, then fix this import
-    from core.normalizer import normalize_skills
+    from core.skills import normalize_skills
 except ImportError:
     def normalize_skills(skills):
-        """TEMPORARY FAKE: just title-cases. Replace with M1's real function."""
         return [s.strip().title() for s in skills]
 
 # ---------- Careers list ----------
 def load_careers():
     """Return a list of {"career_id", "name"}. Uses M1's file if it exists."""
-    path="data/career.json"
+    path="data/careers.json"
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)

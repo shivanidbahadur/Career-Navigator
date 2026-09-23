@@ -1,35 +1,28 @@
 import streamlit as st
+from learning.auth import require_login, show_user_sidebar
 from learning.roadmap import build_roadmap, get_resources, update_progress
+from core.gaps import get_skill_gaps
+
+require_login()
+show_user_sidebar()
 
 st.title("Your Learning Roadmap")
 
-# ---------- 1. Get Gaps (using M1's function or a temporary mock) ----------
-try:
-    # TODO: ask Member 1 for the exact file name and function, then fix this import
-    from core.matcher import get_skill_gaps
-    profile = st.session_state.get("profile", {})
-    target_career = profile.get("target_career")
-    user_skills = profile.get("skills", [])
-    
-    if target_career:
-        gaps = get_skill_gaps(user_skills, target_career)
-    else:
-        # Fallback if no target career selected yet
-        gaps = [
-            {"skill": "Statistics", "priority": "High", "weight": 5},
-            {"skill": "Machine Learning", "priority": "High", "weight": 5},
-            {"skill": "Pandas", "priority": "Medium", "weight": 3},
-            {"skill": "Data Visualization", "priority": "Medium", "weight": 3},
-            {"skill": "AWS", "priority": "Low", "weight": 2},
-        ]
-except ImportError:
-    # TEMPORARY MOCK until M1's gap analysis function is ready
+# ---------- 1. Get Gaps using M1's core engine ----------
+profile = st.session_state.get("profile", {})
+target_career = profile.get("target_career")
+user_skills = profile.get("skills", [])
+
+if target_career:
+    gaps = get_skill_gaps(user_skills, target_career)
+else:
+    # Fallback if no target career selected yet
     gaps = [
         {"skill": "Statistics", "priority": "High", "weight": 5},
         {"skill": "Machine Learning", "priority": "High", "weight": 5},
         {"skill": "Pandas", "priority": "Medium", "weight": 3},
         {"skill": "Data Visualization", "priority": "Medium", "weight": 3},
-        {"skill": "AWS", "priority": "Low", "weight": 2},
+        {"skill": "Cloud Computing", "priority": "Low", "weight": 2},
     ]
 
 if not gaps:
@@ -37,11 +30,11 @@ if not gaps:
 else:
     # ---------- 2. Build Roadmap & Progress Tracker ----------
     roadmap = build_roadmap(gaps)
-    
+
     # Initialize progress states if not already present
     if "progress" not in st.session_state:
         st.session_state["progress"] = {}
-        
+
     progress_dict = st.session_state["progress"]
 
     # Calculate overall progress percentage
@@ -57,14 +50,14 @@ else:
     for phase_item in roadmap:
         phase_name = phase_item["phase"]
         phase_skills = phase_item["skills"]
-        
+
         st.markdown(f"### 📌 Phase: {phase_name}")
-        
+
         for skill in phase_skills:
             # Find the gap metadata (priority) for styling/display
             gap_info = next((g for g in gaps if g["skill"] == skill), {"priority": "Medium"})
             priority = gap_info.get("priority", "Medium")
-            
+
             # Color tag for priority
             if priority == "High":
                 badge = "🔴 High Priority"
@@ -72,7 +65,7 @@ else:
                 badge = "🟡 Medium Priority"
             else:
                 badge = "🟢 Low Priority"
-                
+
             with st.expander(f"{skill} ({badge})"):
                 # Current status dropdown
                 current_status = progress_dict.get(skill, "Not Started")
@@ -82,15 +75,15 @@ else:
                     index=["Not Started", "In Progress", "Completed"].index(current_status),
                     key=f"status_{skill}"
                 )
-                
+
                 if new_status != current_status:
                     update_progress(skill, new_status)
                     st.rerun()
-                
+
                 # Show learning resources
                 st.markdown("**Learning Resources:**")
                 resources = get_resources(skill)
-                
+
                 if not resources:
                     st.info("No resources found for this skill yet.")
                 else:
