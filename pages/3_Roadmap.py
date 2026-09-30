@@ -2,11 +2,31 @@ import streamlit as st
 from learning.auth import require_login, show_user_sidebar
 from learning.roadmap import build_roadmap, get_resources, update_progress
 from core.gaps import get_skill_gaps
+from ui.theme import apply_theme, section_title, stat_card
+
+st.set_page_config(
+    page_title="AI Career Navigator - Roadmap",
+    page_icon="🗺️",
+    layout="wide",
+)
+apply_theme()
 
 require_login()
 show_user_sidebar()
 
-st.title("Your Learning Roadmap")
+st.markdown(
+    """
+    <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
+        <div class="fg-eyebrow">✦ Skill Roadmap</div>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">Your path, <span class="fg-gradient-text">phase by phase</span>.</h1>
+        <p style="font-size:15.5px;">
+            Work through prioritized skill phases with curated resources
+            and track progress as you go.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ---------- 1. Get Gaps using M1's core engine ----------
 profile = st.session_state.get("profile", {})
@@ -42,7 +62,7 @@ else:
     completed_count = sum(1 for s in gaps if progress_dict.get(s["skill"]) == "Completed")
     progress_pct = completed_count / total_skills if total_skills > 0 else 0
 
-    st.subheader("Overall Progress")
+    section_title("Overall Progress", "📈")
     st.progress(progress_pct, text=f"{completed_count} of {total_skills} skills completed")
     st.write("---")
 
@@ -51,7 +71,7 @@ else:
         phase_name = phase_item["phase"]
         phase_skills = phase_item["skills"]
 
-        st.markdown(f"### 📌 Phase: {phase_name}")
+        st.markdown(f"### 🚀 Phase: {phase_name}")
 
         for skill in phase_skills:
             # Find the gap metadata (priority) for styling/display

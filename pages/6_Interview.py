@@ -3,6 +3,7 @@ import streamlit as st
 from core.gaps import get_skill_gaps
 from interview.questions import generate_questions
 from interview.evaluate import evaluate_answer
+from ui.theme import apply_theme, section_title
 
 
 # ============================================================
@@ -11,12 +12,24 @@ from interview.evaluate import evaluate_answer
 
 st.set_page_config(
     page_title="AI Career Navigator - Interview",
-    page_icon="🎯",
+    page_icon="🎤",
     layout="wide"
 )
+apply_theme()
 
-st.title("🎯 Personalized Mock Interview")
-st.caption("Interview questions are generated from your verified career skill gaps.")
+st.markdown(
+    """
+    <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
+        <div class="fg-eyebrow">✦ Mock Interview</div>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">Practice. Get feedback. <span class="fg-gradient-text">Improve.</span></h1>
+        <p style="font-size:15.5px;">
+            Questions are generated from your verified skill gaps and scored
+            by AI so you know exactly what to sharpen.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 # ============================================================
@@ -133,11 +146,6 @@ if not gaps:
 # ============================================================
 
 st.subheader("📊 Your Verified Skill Gaps")
-
-st.write(
-    "The interview questions below are based only on the skill gaps "
-    "identified by the career gap-analysis module."
-)
 
 priority_order = {
     "High": 0,

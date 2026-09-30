@@ -1,35 +1,79 @@
 """
-app.py
-Main entry point for the Streamlit app. Sets up the page config,
-sidebar, state initialization, and auth guards.
+AI Career Navigator
+Main Streamlit entry point with a modern "Aurora Glass" 3D dashboard UI.
+Existing authentication, state management, and feature modules are preserved.
 """
 
 import streamlit as st
 from core.state import init_state
 from learning.auth import require_login, show_user_sidebar
+from ui.theme import apply_theme, section_title, tilt_card, stat_card
 
-# Page configuration must be the very first Streamlit command
-st.set_page_config(page_title="AI Career Navigator", layout="wide")
+# Page configuration must be the first Streamlit command.
+st.set_page_config(
+    page_title="AI Career Navigator",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
-# Initialize shared session state from M1's core engine
+# Global styling + ambient 3D background (presentation only).
+apply_theme()
+
+# Initialize shared session state from the existing core engine.
 init_state()
 
-# Apply auth guard and sidebar navigation provided by your module
+# Existing authentication and sidebar navigation are intentionally preserved.
 require_login()
 show_user_sidebar()
 
-st.title("AI Career Navigator")
-
-st.write(
-    "Welcome! Fill in your profile, then explore career matches, "
-    "your skill roadmap, jobs, resume, and mock interview."
-)
-
-# Safely check profile name from session state
+# -------------------------------------------------------------------
+# Modern home page
+# -------------------------------------------------------------------
 profile = st.session_state.get("profile", {})
 name = profile.get("name", "")
+display_name = name if name else "Student"
 
-if name:
-    st.write(f"Logged in as: **{name}**")
-else:
-    st.info("No profile yet — go to the Profile page to get started.")
+st.markdown(
+    f"""
+    <div class="fg-hero fg-rise">
+        <div class="fg-eyebrow">✦ Welcome back, {display_name}</div>
+        <h1>Build your <span class="fg-gradient-text">career</span><br>with AI.</h1>
+        <p>
+            Discover suitable career paths, identify your skill gaps,
+            build a personalized learning roadmap, prepare your resume,
+            explore opportunities, and practice interviews — all in one place.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+section_title("Your Career Toolkit", "🧰")
+
+features = [
+    ("🎯", "Career Recommendations", "Find career paths that match your profile, skills and interests."),
+    ("📊", "Skill-Gap Analysis", "Understand the skills you already have and the areas you need to improve."),
+    ("🗺️", "Learning Roadmap", "Follow a personalized step-by-step plan toward your target career."),
+    ("💼", "Jobs & Internships", "Explore opportunities that match your career profile."),
+    ("📄", "Resume Builder", "Create a professional, ATS-friendly resume."),
+    ("🎤", "AI Mock Interview", "Practice personalized interview questions and receive feedback."),
+]
+
+cols = st.columns(3, gap="medium")
+for col, (icon, title, description) in zip(cols * 2, features):
+    with col:
+        tilt_card(icon, title, description)
+
+section_title("Profile Status", "📡")
+
+c1, c2, c3 = st.columns(3)
+with c1:
+    stat_card("Profile", "Complete" if name else "Not started")
+with c2:
+    stat_card("Career Journey", "Ready to explore")
+with c3:
+    stat_card("AI Interview", "Personalized")
+
+if not name:
+    st.info("Complete your Profile first to unlock personalized career guidance.")

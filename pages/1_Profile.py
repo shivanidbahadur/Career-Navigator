@@ -3,6 +3,18 @@ import json
 import streamlit as st
 
 from learning.auth import require_login, show_user_sidebar
+from ui.theme import apply_theme, section_title, stat_card
+
+# ============================================================
+# PAGE CONFIG + THEME (UI only)
+# ============================================================
+
+st.set_page_config(
+    page_title="AI Career Navigator - Profile",
+    page_icon="👤",
+    layout="wide",
+)
+apply_theme()
 
 
 # ============================================================
@@ -17,10 +29,18 @@ show_user_sidebar()
 # PAGE
 # ============================================================
 
-st.title("👤 Your Profile")
-st.write(
-    "Create your profile so AI Career Navigator can personalize "
-    "career guidance, learning gaps, and interview practice."
+st.markdown(
+    """
+    <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
+        <div class="fg-eyebrow">✦ Profile Setup</div>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">Tell us about <span class="fg-gradient-text">yourself</span>.</h1>
+        <p style="font-size:15.5px;">
+            Create your profile so AI Career Navigator can personalize
+            career guidance, learning gaps, and interview practice.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
 
@@ -445,6 +465,20 @@ if submitted:
 
     st.subheader("Saved Profile")
 
-    st.json(
-        st.session_state["profile"]
-    )
+    saved = st.session_state["profile"]
+
+    sc1, sc2, sc3 = st.columns(3)
+    with sc1:
+        stat_card("Name", saved.get("name") or "—")
+    with sc2:
+        stat_card("Skills", f"{len(saved.get('skills', []))} selected")
+    with sc3:
+        stat_card(
+            "Target Career",
+            saved.get("target_career_name") or "Not chosen yet",
+        )
+
+    with st.expander("View raw profile data"):
+        st.json(
+            st.session_state["profile"]
+        )

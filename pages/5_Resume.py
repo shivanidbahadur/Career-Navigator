@@ -5,8 +5,28 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from employment.resume import generate_resume, analyze_resume
+from ui.theme import apply_theme, section_title
 
-st.title("Resume Builder")
+st.set_page_config(
+    page_title="AI Career Navigator - Resume",
+    page_icon="📄",
+    layout="wide",
+)
+apply_theme()
+
+st.markdown(
+    """
+    <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
+        <div class="fg-eyebrow">✦ Resume Studio</div>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">Build a resume that <span class="fg-gradient-text">gets noticed</span>.</h1>
+        <p style="font-size:15.5px;">
+            Add projects, generate a clean ATS-friendly resume, and get
+            suggestions to make it stronger.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # --- Temporary hardcoded profile for testing (Step 7 connects real state) ---
 if "resume_profile" not in st.session_state:

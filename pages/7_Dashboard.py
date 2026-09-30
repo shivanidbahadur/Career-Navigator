@@ -15,10 +15,29 @@ from core.skills import get_effective_skills
 from core.recommend import recommend_careers
 from core.gaps import get_skill_gaps
 from core.readiness import compute_readiness
+from ui.theme import apply_theme, section_title, stat_card
 
+st.set_page_config(
+    page_title="AI Career Navigator - Dashboard",
+    page_icon="📊",
+    layout="wide",
+)
+apply_theme()
 init_state()
 
-st.title("Career Readiness Dashboard")
+st.markdown(
+    """
+    <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
+        <div class="fg-eyebrow">✦ Readiness Dashboard</div>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">How ready are <span class="fg-gradient-text">you?</span></h1>
+        <p style="font-size:15.5px;">
+            One live snapshot of your target career, skill gaps, learning
+            progress, interview performance and resume status.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 profile = st.session_state["profile"]
 
@@ -40,10 +59,16 @@ st.subheader(f"Target Career: {target_name}")
 # ---- Readiness score (the headline number) ----
 readiness = compute_readiness(st.session_state)
 
-st.metric("Overall Readiness Score", f"{readiness['readiness']} / 100")
+d1, d2, d3 = st.columns(3)
+with d1:
+    stat_card("Overall Readiness", f"{readiness['readiness']} / 100")
+with d2:
+    stat_card("Skill Match", f"{readiness['skill_match']}%")
+with d3:
+    stat_card("Interview Score", f"{readiness['interview']}%")
 
 # ---- Breakdown of the readiness formula ----
-st.subheader("Readiness Breakdown")
+section_title("Readiness Breakdown", "🧮")
 col1, col2, col3 = st.columns(3)
 col1.metric("Skill Match", f"{readiness['skill_match']}%")
 col1.metric("Experience", f"{readiness['experience']}%")
@@ -57,7 +82,7 @@ st.caption(
 )
 
 # ---- Learning progress summary ----
-st.subheader("Learning Progress")
+section_title("Learning Progress", "📚")
 progress = st.session_state["progress"]
 if not progress:
     st.info("No roadmap progress yet. Visit the Roadmap page to start learning.")
@@ -70,7 +95,7 @@ else:
     st.write(f"⬜ Not Started ({len(not_started)}): {', '.join(not_started) or '—'}")
 
 # ---- Interview performance summary ----
-st.subheader("Interview Performance")
+section_title("Interview Performance", "🎤")
 interview_results = st.session_state["interview_results"]
 if not interview_results:
     st.info("No mock interview attempted yet. Visit the Interview page.")
@@ -79,14 +104,14 @@ else:
         st.write(f"- **{r['skill']}**: {r['score']}/100 — {r['question']}")
 
 # ---- Resume status ----
-st.subheader("Resume Status")
+section_title("Resume Status", "📄")
 if st.session_state["resume_generated"]:
     st.success("Resume generated.")
 else:
     st.info("Resume not generated yet. Visit the Resume page.")
 
 # ---- Remaining skill gaps for the target career ----
-st.subheader("Remaining Skill Gaps")
+section_title("Remaining Skill Gaps", "🧩")
 effective_skills = get_effective_skills(st.session_state)
 gaps = get_skill_gaps(effective_skills, profile["target_career"])
 
