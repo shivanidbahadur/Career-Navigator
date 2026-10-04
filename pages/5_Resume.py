@@ -5,6 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from employment.resume import generate_resume, analyze_resume
+from core.state import init_state
 from ui.theme import apply_theme, section_title
 
 st.set_page_config(
@@ -28,22 +29,69 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Temporary hardcoded profile for testing (Step 7 connects real state) ---
-if "resume_profile" not in st.session_state:
-    st.session_state.resume_profile = {
-        "name": "Priya Sharma",
-        "email": "priya@example.com",
-        "degree": "B.Tech",
-        "branch": "Computer Science",
-        "grad_year": 2027,
-        "skills": ["Python", "SQL", "Excel"],
-        "projects": [],
-        "experience": "Fresher"
-    }
-career_id = "data_analyst"
 # -----------------------------------------------------------------------
+# Build the resume from the REAL profile saved on the Profile page.
+# (Previously this used a hardcoded test profile, so it always showed
+# "Priya Sharma" instead of the name the student saved.)
+# -----------------------------------------------------------------------
+init_state()
+
+user_profile = st.session_state.get("profile", {})
+
+# A resume needs the student's real name — ask them to complete the
+# Profile page if they haven't yet.
+if not user_profile.get("name"):
+    st.warning(
+        "Complete your Profile page first. Your resume will then use "
+        "the name, email, skills and projects you saved there."
+    )
+    st.stop()
+
+
+def _as_project(p):
+    """The Profile page stores projects as plain strings, while the
+    Resume form stores {title, description} dicts. Normalize everything
+    to dicts so the resume generator always gets what it expects."""
+    if isinstance(p, str):
+        return {"title": p, "description": ""}
+    return {
+        "title": p.get("title", "Project"),
+        "description": p.get("description", ""),
+    }
+
+
+# Normalize projects in place so the form below and the Profile page
+# share one source of truth in st.session_state["profile"]["projects"].
+user_profile["projects"] = [
+    _as_project(p) for p in user_profile.get("projects", [])
+]
+
+resume_profile = {
+    "name": user_profile.get("name", ""),
+    "email": user_profile.get("email", ""),
+    "degree": user_profile.get("degree", ""),
+    "branch": user_profile.get("branch", ""),
+    "grad_year": user_profile.get("grad_year", ""),
+    "skills": user_profile.get("skills", []),
+    "projects": user_profile["projects"],
+    "experience": user_profile.get("experience", "Fresher"),
+}
+
+# Use the student's chosen target career if they set one on the
+# Careers/Profile page; otherwise fall back to the default.
+career_id = user_profile.get("target_career") or "data_analyst"
+
+# Keep the session key in sync for any other modules that read it.
+st.session_state.resume_profile = resume_profile
 
 profile = st.session_state.resume_profile
+
+st.caption(
+    f"📄 Built from your Profile: **{profile['name']}** • "
+    f"{profile['email'] or 'no email yet'} • "
+    f"{len(profile['skills'])} skills • "
+    f"{len(profile['projects'])} projects"
+)
 
 st.subheader("Add a Project")
 with st.form("project_form", clear_on_submit=True):

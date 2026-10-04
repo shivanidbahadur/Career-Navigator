@@ -332,8 +332,12 @@ with st.form("profile_form"):
     )
 
     if isinstance(existing_projects, list):
+        # Projects can be plain strings (typed here) or dicts
+        # ({title, description}, added on the Resume page).
         projects_default = "\n".join(
-            existing_projects
+            p if isinstance(p, str)
+            else f"{p.get('title', '')}: {p.get('description', '')}".strip(": ")
+            for p in existing_projects
         )
     else:
         projects_default = ""

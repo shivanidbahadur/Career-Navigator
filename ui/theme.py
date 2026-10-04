@@ -365,6 +365,14 @@ def apply_theme():
 
         a { color: #8fd4ff !important; }
 
+        /* Resume preview iframe looks like a clean paper document */
+        iframe[title="st.iframe"], [data-testid="stIframe"] iframe {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 18px 44px rgba(3, 6, 24, .5);
+            border: none;
+        }
+
         /* ============ SCROLLBAR ============ */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-thumb {
