@@ -28,30 +28,62 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Temporary hardcoded profile for testing (Step 7 connects real state) ---
-if "resume_profile" not in st.session_state:
-    st.session_state.resume_profile = {
-        "name": "Priya Sharma",
-        "email": "priya@example.com",
-        "degree": "B.Tech",
-        "branch": "Computer Science",
-        "grad_year": 2027,
-        "skills": ["Python", "SQL", "Excel"],
-        "projects": [],
-        "experience": "Fresher"
-    }
-career_id = "data_analyst"
-# -----------------------------------------------------------------------
 
-profile = st.session_state.resume_profile
+# Load the profile saved by the Profile page
+if "profile" not in st.session_state or not st.session_state["profile"]:
+    st.warning("Please complete and save your profile first.")
+    st.stop()
+
+saved_profile = st.session_state["profile"]
+
+# Keep additional projects added through the Resume page
+if "resume_extra_projects" not in st.session_state:
+    st.session_state["resume_extra_projects"] = []
+
+# Prepare profile data for resume generation
+profile = {
+    "name": saved_profile.get("name", ""),
+    "email": saved_profile.get("email", ""),
+    "degree": saved_profile.get("degree", ""),
+    "branch": saved_profile.get("branch", ""),
+    "grad_year": saved_profile.get("grad_year", ""),
+    "skills": saved_profile.get("skills", []),
+    "interests": saved_profile.get("interests", []),
+    "experience": saved_profile.get("experience", "Fresher"),
+    "projects": [
+        (
+            {
+                "title": project.get("title", "Project"),
+                "description": project.get("description", "")
+            }
+            if isinstance(project, dict)
+            else {
+                "title": str(project),
+                "description": ""
+            }
+        )
+        for project in saved_profile.get("projects", [])
+    ] + st.session_state["resume_extra_projects"]
+}
+
+# Use the selected career
+career_id = saved_profile.get("target_career") or "data_analyst"
+
 
 st.subheader("Add a Project")
+
 with st.form("project_form", clear_on_submit=True):
     proj_title = st.text_input("Project Title")
     proj_desc = st.text_area("Project Description")
     submitted = st.form_submit_button("Add Project")
-    if submitted and proj_title:
-        profile["projects"].append({"title": proj_title, "description": proj_desc})
+
+    if submitted and proj_title.strip():
+        project = {
+            "title": proj_title.strip(),
+            "description": proj_desc.strip()
+        }
+        st.session_state["resume_extra_projects"].append(project)
+        st.session_state["resume_generated"] = False
         st.success(f"Added project: {proj_title}")
 
 if profile["projects"]:
