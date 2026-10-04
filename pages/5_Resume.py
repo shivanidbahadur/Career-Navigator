@@ -60,11 +60,11 @@ def _as_project(p):
     }
 
 
-# Normalize projects in place so the form below and the Profile page
-# share one source of truth in st.session_state["profile"]["projects"].
-user_profile["projects"] = [
-    _as_project(p) for p in user_profile.get("projects", [])
-]
+# Projects added here on the Resume page are kept in their own list so
+# the shared Profile data stays untouched; they're merged in for the
+# resume view only.
+if "resume_extra_projects" not in st.session_state:
+    st.session_state["resume_extra_projects"] = []
 
 resume_profile = {
     "name": user_profile.get("name", ""),
@@ -73,7 +73,8 @@ resume_profile = {
     "branch": user_profile.get("branch", ""),
     "grad_year": user_profile.get("grad_year", ""),
     "skills": user_profile.get("skills", []),
-    "projects": user_profile["projects"],
+    "projects": [_as_project(p) for p in user_profile.get("projects", [])]
+    + st.session_state["resume_extra_projects"],
     "experience": user_profile.get("experience", "Fresher"),
 }
 
@@ -99,7 +100,11 @@ with st.form("project_form", clear_on_submit=True):
     proj_desc = st.text_area("Project Description")
     submitted = st.form_submit_button("Add Project")
     if submitted and proj_title:
-        profile["projects"].append({"title": proj_title, "description": proj_desc})
+        st.session_state["resume_extra_projects"].append(
+            {"title": proj_title, "description": proj_desc}
+        )
+        # Force a fresh preview so the new project shows up.
+        st.session_state["resume_generated"] = False
         st.success(f"Added project: {proj_title}")
 
 if profile["projects"]:
