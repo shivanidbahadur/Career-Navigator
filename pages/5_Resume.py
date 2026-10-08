@@ -112,27 +112,29 @@ if profile["projects"]:
     for p in profile["projects"]:
         st.write(f"- {p['title']}: {p['description']}")
 
-st.subheader("Generate Resume")
-if st.button("Generate Resume"):
-    resume_html = generate_resume(profile, career_id)
-    st.session_state["resume_generated"] = True
-    st.session_state["resume_html"] = resume_html
+# -----------------------------------------------------------------------
+# The preview is regenerated fresh on every run from the current
+# profile, so an outdated "Priya Sharma" preview can never linger.
+# generate_resume() is just local HTML rendering, so this is cheap.
+# -----------------------------------------------------------------------
+resume_html = generate_resume(profile, career_id)
+st.session_state["resume_html"] = resume_html
+st.session_state["resume_generated"] = True
 
-if st.session_state.get("resume_generated"):
-    st.subheader("Preview")
-    st.iframe(st.session_state["resume_html"], height=500)
+st.subheader("Preview")
+st.iframe(st.session_state["resume_html"], height=500)
 
-    st.download_button(
-        label="Download Resume (HTML)",
-        data=st.session_state["resume_html"],
-        file_name="resume.html",
-        mime="text/html"
-    )
+st.download_button(
+    label="Download Resume (HTML)",
+    data=st.session_state["resume_html"],
+    file_name="resume.html",
+    mime="text/html"
+)
 
-    st.subheader("Suggestions")
-    suggestions = analyze_resume(profile, career_id)
-    if suggestions:
-        for s in suggestions:
-            st.write(f"- {s['suggestion']}")
-    else:
-        st.write("No suggestions right now — either you're fully matched, or career data isn't loaded yet.")
+st.subheader("Suggestions")
+suggestions = analyze_resume(profile, career_id)
+if suggestions:
+    for s in suggestions:
+        st.write(f"- {s['suggestion']}")
+else:
+    st.write("No suggestions right now — either you're fully matched, or career data isn't loaded yet.")
