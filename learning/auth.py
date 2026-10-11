@@ -1,8 +1,7 @@
-import hashlib
 import json
 import os
-import secrets
 
+import bcrypt
 import streamlit as st
 
 USERS_FILE = "data/users.json"
@@ -29,11 +28,14 @@ def save_users(users):
 
 
 # ---------- Passwords ----------
-def hash_password(password, salt):
-    """Scramble the password with the salt. One-way: cannot be reversed."""
-    return hashlib.pbkdf2_hmac(
-        "sha256", password.encode("utf-8"), bytes.fromhex(salt), 100000
-    ).hex()
+def hash_password(password):
+    """Hash with bcrypt (salt is built in). Returns text for storage."""
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+def verify_password(password, password_hash):
+    """True if the password matches the stored hash."""
+    return bcrypt.checkpw(password.encode("utf-8"), password_hash.encode("utf-8"))
 
 
 def register_user(name, email, password):
@@ -43,11 +45,9 @@ def register_user(name, email, password):
     if email in users:
         return False, "An account with this email already exists. Please log in."
 
-    salt = secrets.token_hex(16)  # random, different for every user
     users[email] = {
         "name": name.strip(),
-        "salt": salt,
-        "password_hash": hash_password(password, salt),
+        "password_hash": hash_password(password),
     }
     save_users(users)
     return True, ""
@@ -59,8 +59,7 @@ def check_login(email, password):
     record = load_users().get(email)
     if record is None:
         return None
-    attempt = hash_password(password, record["salt"])
-    if secrets.compare_digest(attempt, record["password_hash"]):
+    if verify_password(password, record["password_hash"]):
         return {"name": record["name"], "email": email}
     return None
 
