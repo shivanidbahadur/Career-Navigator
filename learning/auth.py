@@ -165,11 +165,7 @@ def show_user_sidebar():
     if not user:
         return
 
-    # Count calls in this run so each button gets a unique key
-    count = st.session_state.get("_sidebar_calls", 0) + 1
-    st.session_state["_sidebar_calls"] = count
-
     with st.sidebar:
         st.write(f"Logged in as **{user['name']}**")
-        if st.button("Log out", key=f"logout_btn_{count}"):
+        if st.button("Log out", key="logout_btn"):
             logout()
