@@ -119,10 +119,8 @@ def login_form():
 
 
 def logout():
-    """Remove the user and their data, then reload."""
-    st.session_state.pop("user", None)
-    for key in USER_DATA_KEYS:
-        st.session_state.pop(key, None)
+    """Remove the user and ALL their data, then reload."""
+    st.session_state.clear()
     st.rerun()
 
 
