@@ -1166,5 +1166,69 @@
     "url": "https://www.interaction-design.org/literature/topics/wireframing",
     "difficulty": "Beginner",
     "duration": "2 hours"
+  },
+  {
+    "skill": "Apache Spark",
+    "title": "Apache Spark: Quick Start Guide",
+    "type": "tutorial",
+    "url": "https://spark.apache.org/docs/latest/quick-start.html",
+    "difficulty": "Intermediate",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "Apache Airflow",
+    "title": "Astronomer: Apache Airflow Fundamentals",
+    "type": "course",
+    "url": "https://www.astronomer.io/events/workshops/airflow-fundamentals/",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "TypeScript",
+    "title": "TypeScript Official Documentation: Handbook",
+    "type": "tutorial",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "difficulty": "Beginner",
+    "duration": "6 hours"
+  },
+  {
+    "skill": "Terraform",
+    "title": "HashiCorp Learn: Terraform Getting Started",
+    "type": "tutorial",
+    "url": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started",
+    "difficulty": "Beginner",
+    "duration": "4 hours"
+  },
+  {
+    "skill": "Solidity",
+    "title": "Solidity by Example",
+    "type": "tutorial",
+    "url": "https://solidity-by-example.org/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
+  },
+  {
+    "skill": "Smart Contracts",
+    "title": "Ethereum.org: Introduction to Smart Contracts",
+    "type": "tutorial",
+    "url": "https://ethereum.org/en/developers/docs/smart-contracts/",
+    "difficulty": "Beginner",
+    "duration": "3 hours"
+  },
+  {
+    "skill": "SIEM Tools",
+    "title": "Splunk Fundamentals Part 1",
+    "type": "course",
+    "url": "https://www.splunk.com/en_us/training/courses/splunk-fundamentals-1.html",
+    "difficulty": "Beginner",
+    "duration": "8 hours"
+  },
+  {
+    "skill": "Jenkins",
+    "title": "Jenkins User Handbook",
+    "type": "tutorial",
+    "url": "https://www.jenkins.io/doc/book/",
+    "difficulty": "Intermediate",
+    "duration": "5 hours"
   }
 ]

@@ -82,6 +82,26 @@
         "skill": "Cloud Computing",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Probability Distributions",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Wrangling",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Random Forest Algorithm",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Apache Spark",
+        "importance": "Optional",
+        "weight": 2
       }
     ]
   },
@@ -99,6 +119,12 @@
         "importance": "Required",
         "weight": 5
       },
+      {
+        "skill": "Power BI",
+        "importance": "Required",
+        "weight": 4
+      },
+
       {
         "skill": "SQL",
         "importance": "Required",
@@ -158,6 +184,26 @@
         "skill": "Critical Thinking",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "ETL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Relational Databases",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Data Modeling",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Dashboard Design",
+        "importance": "Required",
+        "weight": 4
       }
     ]
   },
@@ -239,6 +285,26 @@
         "skill": "Communication",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "PyTorch",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Kubernetes",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Model Monitoring",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "ONNX",
+        "importance": "Optional",
+        "weight": 2
       }
     ]
   },
@@ -313,6 +379,26 @@
       },
       {
         "skill": "Agile",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Unit Testing",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "RESTful APIs",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Design Patterns",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "CI/CD",
         "importance": "Optional",
         "weight": 2
       }
@@ -391,6 +477,32 @@
         "skill": "Communication",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Terraform",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Virtual Private Cloud (VPC)",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "IAM Policies",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "AWS",
+        "importance": "Required",
+        "weight": 5
+      },
+
+      {
+        "skill": "Ansible",
+        "importance": "Optional",
+        "weight": 2
       }
     ]
   },
@@ -460,6 +572,26 @@
       },
       {
         "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "TypeScript",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "DOM Manipulation",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Web Security Principles",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Webpack",
         "importance": "Optional",
         "weight": 2
       }
@@ -538,6 +670,26 @@
         "skill": "Communication",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "SIEM Tools",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Firewall Administration",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Penetration Testing",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "IDS/IPS",
+        "importance": "Optional",
+        "weight": 3
       }
     ]
   },
@@ -555,6 +707,12 @@
         "importance": "Required",
         "weight": 5
       },
+      {
+        "skill": "AWS",
+        "importance": "Required",
+        "weight": 5
+      },
+
       {
         "skill": "Docker",
         "importance": "Required",
@@ -612,6 +770,26 @@
       },
       {
         "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Jenkins",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Prometheus",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Grafana",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Helm",
         "importance": "Optional",
         "weight": 2
       }
@@ -685,6 +863,26 @@
         "skill": "Documentation",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Business Process Modeling",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "SWOT Analysis",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Gap Analysis",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Use Case Specification",
+        "importance": "Recommended",
+        "weight": 3
       }
     ]
   },
@@ -749,6 +947,26 @@
       },
       {
         "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Cross-Platform Frameworks",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Mobile UI/UX Guidelines",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Push Notifications Integration",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Local Storage Management",
         "importance": "Optional",
         "weight": 2
       }
@@ -822,6 +1040,26 @@
         "skill": "Statistics",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Product Roadmapping",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "User Story Mapping",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Product Lifecycle Management",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Go-to-Market Strategy",
+        "importance": "Optional",
+        "weight": 2
       }
     ]
   },
@@ -883,6 +1121,26 @@
         "skill": "Documentation",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Interaction Design",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Information Architecture",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Design Systems",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Usability Testing",
+        "importance": "Recommended",
+        "weight": 3
       }
     ]
   },
@@ -944,6 +1202,26 @@
         "skill": "Communication",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Test Case Generation",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Defect Tracking",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Regression Testing",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Load Testing",
+        "importance": "Optional",
+        "weight": 2
       }
     ]
   },
@@ -998,6 +1276,26 @@
       },
       {
         "skill": "Communication",
+        "importance": "Optional",
+        "weight": 2
+      },
+      {
+        "skill": "Routing Protocols",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Subnetting",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Network Security Protocols",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "SNMP Monitoring",
         "importance": "Optional",
         "weight": 2
       }
@@ -1061,6 +1359,277 @@
         "skill": "Communication",
         "importance": "Optional",
         "weight": 2
+      },
+      {
+        "skill": "Transformer Models",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Academic Paper Implementation",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Experiment Tracking",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "PyTorch",
+        "importance": "Required",
+        "weight": 5
+      }
+    ]
+  },
+  {
+    "career_id": "data_engineer",
+    "name": "Data Engineer",
+    "description": "Designs and builds systems for collecting, storing, and analyzing large-scale data.",
+    "interest_tags": [
+      "Data",
+      "Infrastructure",
+      "Engineering"
+    ],
+    "skills": [
+      {
+        "skill": "SQL",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Python",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "ETL Pipelines",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Apache Spark",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Data Warehousing",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Apache Airflow",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Docker",
+        "importance": "Optional",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Optional",
+        "weight": 3
+      }
+    ]
+  },
+  {
+    "career_id": "full_stack_developer",
+    "name": "Full Stack Developer",
+    "description": "Builds both client-side and server-side components of web applications.",
+    "interest_tags": [
+      "Web",
+      "Software"
+    ],
+    "skills": [
+      {
+        "skill": "JavaScript",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "React",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Node.js",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "REST API",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "TypeScript",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "SQL",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "HTML",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "CSS",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Optional",
+        "weight": 3
+      }
+    ]
+  },
+  {
+    "career_id": "information_security_engineer",
+    "name": "Information Security Engineer",
+    "description": "Implements and monitors security measures to protect computer systems and networks.",
+    "interest_tags": [
+      "Security",
+      "Engineering"
+    ],
+    "skills": [
+      {
+        "skill": "Security",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Networking",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Risk Assessment",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Compliance",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Vulnerability Assessment",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Incident Response",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Linux",
+        "importance": "Optional",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "career_id": "blockchain_developer",
+    "name": "Blockchain Developer",
+    "description": "Builds decentralized applications and smart contracts using blockchain technology.",
+    "interest_tags": [
+      "Software",
+      "Web"
+    ],
+    "skills": [
+      {
+        "skill": "Smart Contracts",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Solidity",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Cryptography",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "JavaScript",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Web3.js / Ethers.js",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Distributed Ledgers",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Git",
+        "importance": "Optional",
+        "weight": 3
+      }
+    ]
+  },
+  {
+    "career_id": "site_reliability_engineer",
+    "name": "Site Reliability (SRE) Engineer",
+    "description": "Combines software engineering and IT operations to ensure system reliability and uptime.",
+    "interest_tags": [
+      "Engineering",
+      "Infrastructure"
+    ],
+    "skills": [
+      {
+        "skill": "Linux",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Automation & Scripting",
+        "importance": "Required",
+        "weight": 5
+      },
+      {
+        "skill": "Incident Management",
+        "importance": "Required",
+        "weight": 4
+      },
+      {
+        "skill": "Cloud Computing",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Kubernetes",
+        "importance": "Recommended",
+        "weight": 4
+      },
+      {
+        "skill": "Monitoring & Observability",
+        "importance": "Recommended",
+        "weight": 3
+      },
+      {
+        "skill": "Docker",
+        "importance": "Optional",
+        "weight": 3
       }
     ]
   }
