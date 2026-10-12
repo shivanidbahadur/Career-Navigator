@@ -1,38 +1,31 @@
+import hashlib
 import json
 import os
 import re
+import secrets
+from datetime import datetime, timedelta
+import time
 
 import bcrypt
 import streamlit as st
+from streamlit_cookies_controller import CookieController
 
-USERS_FILE = "data/users.json"
+from core import db
+
 MIN_PASSWORD_LENGTH = 6
 MAX_NAME_LENGTH = 50
 MAX_EMAIL_LENGTH = 100
 MAX_PASSWORD_BYTES = 72  # bcrypt cannot handle more than 72 bytes
-
+SESSIONS_FILE = "data/sessions.json"
+COOKIE_NAME = "career_nav_session"
+SESSION_DAYS = 7
 
 # Data that belongs to one user. Cleared on logout so the next person
 # starts fresh.
 USER_DATA_KEYS = ["profile", "progress", "interview_results", "resume_generated"]
 
 
-# ---------- Storage ----------
-def load_users():
-    """Read all accounts from the JSON file ({} if there are none yet)."""
-    if not os.path.exists(USERS_FILE):
-        return {}
-    with open(USERS_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def save_users(users):
-    os.makedirs("data", exist_ok=True)
-    with open(USERS_FILE, "w", encoding="utf-8") as f:
-        json.dump(users, f, indent=2)
-
-
-# ---------- Passwords ----------
+# ---------- Passwords & Database Auth ----------
 def hash_password(password):
     """Hash with bcrypt (salt is built in). Returns text for storage."""
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
@@ -46,32 +39,126 @@ def verify_password(password, password_hash):
         return False
     
 def register_user(name, email, password):
-    """Create an account. Returns (True, "") or (False, error message)."""
+    """Create an account in SQLite. Returns (True, "") or (False, error message)."""
     email = email.strip().lower()
-    users = load_users()
-    if email in users:
+    existing_user = db.get_user_by_email(email)
+    if existing_user:
         return False, "An account with this email already exists. Please log in."
 
-    users[email] = {
-        "name": name.strip(),
-        "password_hash": hash_password(password),
-    }
-    save_users(users)
+    password_hash = hash_password(password)
+    user_id = db.create_user(name.strip(), email, password_hash)
+    if not user_id:
+        return False, "Database error while creating user account."
+        
     return True, ""
 
 
 def check_login(email, password):
-    """Return {"name", "email"} if the password is right, else None."""
+    """Return user dict including user_id if password is correct."""
     email = email.strip().lower()
     if len(password.encode("utf-8")) > MAX_PASSWORD_BYTES:
         return None
-    record = load_users().get(email)
+    record = db.get_user_by_email(email)
     if record is None:
         return None
     if verify_password(password, record["password_hash"]):
-        return {"name": record["name"], "email": email}
+        return {
+            "user_id": record["user_id"],
+            "name": record["name"],
+            "email": email
+        }
     return None
 
+# ---------- Persistent sessions (stay logged in) ----------
+def _load_sessions():
+    if not os.path.exists(SESSIONS_FILE):
+        return {}
+    try:
+        with open(SESSIONS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (ValueError, OSError):
+        return {}
+
+
+def _save_sessions(sessions):
+    os.makedirs("data", exist_ok=True)
+    with open(SESSIONS_FILE, "w", encoding="utf-8") as f:
+        json.dump(sessions, f, indent=2)
+
+
+def _hash_token(token):
+    """Fast one-way hash. Tokens are long random strings, so SHA-256 is fine."""
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def _store_session(token_hash, user, expires_at):
+    sessions = _load_sessions()
+    sessions[token_hash] = {
+        "email": user["email"],
+        "name": user["name"],
+        "expires_at": expires_at.isoformat(),
+    }
+    _save_sessions(sessions)
+
+
+def _find_session(token_hash):
+    """Return the stored session dict, or None if missing or expired."""
+    record = _load_sessions().get(token_hash)
+    if record is None:
+        return None
+    try:
+        if datetime.fromisoformat(record["expires_at"]) < datetime.now():
+            _remove_session(token_hash)
+            return None
+    except (ValueError, KeyError):
+        return None
+    return record
+
+
+def _remove_session(token_hash):
+    sessions = _load_sessions()
+    if token_hash in sessions:
+        del sessions[token_hash]
+        _save_sessions(sessions)
+
+
+def _cookies():
+    """One cookie controller per browser session."""
+    if "_cookie_controller" not in st.session_state:
+        st.session_state["_cookie_controller"] = CookieController(key="career_nav_cookies")
+    return st.session_state["_cookie_controller"]
+
+
+def start_session(user):
+    """Called after a successful login or signup. Sets the stay-logged-in cookie."""
+    token = secrets.token_urlsafe(32)
+    expires_at = datetime.now() + timedelta(days=SESSION_DAYS)
+    _store_session(_hash_token(token), user, expires_at)
+    _cookies().set(COOKIE_NAME, token, max_age=SESSION_DAYS * 24 * 3600)
+    st.session_state["session_token"] = token
+    time.sleep(1)
+
+
+def restore_session():
+    """If a valid cookie exists, log the user back in. True if restored."""
+    token = _cookies().get(COOKIE_NAME)
+    if not token:
+        return False
+    record = _find_session(_hash_token(token))
+    if record is None:
+        return False
+    st.session_state["user"] = {"name": record["name"], "email": record["email"]}
+    st.session_state["session_token"] = token
+    return True
+
+
+def end_session():
+    """Called on logout. Deletes the stored token and the cookie."""
+    token = st.session_state.get("session_token") or _cookies().get(COOKIE_NAME)
+    if token:
+        _remove_session(_hash_token(token))
+    _cookies().remove(COOKIE_NAME)
+    time.sleep(1)
 
 # ---------- Session helpers ----------
 def is_logged_in():
@@ -112,13 +199,16 @@ def login_form():
             password = st.text_input("Password", type="password")
             login_clicked = st.form_submit_button("Log in")
 
-        if login_clicked:
-            user = check_login(email, password)
-            if user is None:
-                st.error("Wrong email or password.")
-            else:
-                st.session_state["user"] = user
-                st.rerun()
+            if login_clicked:
+                user = check_login(email, password)
+                if user is None:
+                    st.error("Wrong email or password.")
+                else:
+                    st.session_state["user"] = user
+                    st.session_state["user_id"] = user["user_id"]  # <--- Add this line
+                    st.session_state.pop("_just_logged_out", None)
+                    start_session(user)
+                    st.rerun()
 
     with tab_signup:
         with st.form("signup_form"):
@@ -137,27 +227,36 @@ def login_form():
                 if not ok:
                     st.error(message)
                 else:
-                    # Log them in straight away
-                    st.session_state["user"] = {
+                    # Fetch user record to get the generated user_id
+                    record = db.get_user_by_email(new_email)
+                    new_user = {
+                        "user_id": record["user_id"],
                         "name": name.strip(),
                         "email": new_email.strip().lower(),
                     }
+                    st.session_state["user"] = new_user
+                    st.session_state["user_id"] = record["user_id"]  # <--- Add this line
+                    st.session_state.pop("_just_logged_out", None)            
+                    start_session(new_user)
                     st.rerun()
 
 
 def logout():
-    """Remove the user and ALL their data, then reload."""
+    """Remove the session cookie and ALL user data, then reload."""
+    end_session()
     st.session_state.clear()
+    st.session_state["_just_logged_out"] = True
     st.rerun()
 
 
 def require_login():
-    """Call at the top of every page. Shows login and stops if not logged in."""
+    """Call at the top of every page. Restores a saved login, or shows the forms."""
+    if not is_logged_in() and not st.session_state.get("_just_logged_out"):
+        restore_session()
     if not is_logged_in():
         st.title("AI Career Navigator")
         login_form()
-        st.stop()  # nothing below this line runs until the user logs in
-
+        st.stop()
 
 def show_user_sidebar():
     """Show who is logged in, plus a Log out button, in the sidebar."""

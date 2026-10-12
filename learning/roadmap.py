@@ -25,7 +25,7 @@ def load_resources():
         return json.load(f)
 
 
-# ---------- Public functions (per the function contract) ----------
+# ---------- Public functions ----------
 def build_roadmap(gaps):
     """
     gaps: [{"skill", "priority": "High"|"Medium"|"Low", "weight"}]
@@ -52,8 +52,6 @@ def _topological_order(gap_skills, prereqs, priority_by_skill):
     remaining = set(gap_skills)
 
     while remaining:
-        # A skill is "ready" if every one of its prerequisites that is
-        # also in our gap list has already been placed.
         ready = [
             skill
             for skill in remaining
@@ -64,11 +62,8 @@ def _topological_order(gap_skills, prereqs, priority_by_skill):
         ]
 
         if not ready:
-            # Safety net: a prerequisite cycle (shouldn't normally happen).
-            # Place whatever is left, alphabetically, so we never crash.
             ready = sorted(remaining)
 
-        # Highest priority first; alphabetical as a tie-breaker for stability.
         ready.sort(key=lambda s: (priority_by_skill.get(s, "Low") != "High",
                                    priority_by_skill.get(s, "Low") != "Medium",
                                    s))
@@ -84,7 +79,6 @@ def _group_into_phases(ordered_skills):
     """Split the ordered list into 4 roughly equal named phases."""
     total = len(ordered_skills)
     phase_count = len(PHASE_NAMES)
-    # How many skills per phase, spreading any remainder over the first phases
     base = total // phase_count
     extra = total % phase_count
 
@@ -117,8 +111,9 @@ def get_resources(skill):
 
 
 def update_progress(skill, status):
-    """Update st.session_state['progress'] for one skill."""
-    import streamlit as st  # imported here so this file can be unit-tested without Streamlit
+    """Update st.session_state['progress'] and persist to database for one skill."""
+    import streamlit as st
+    from core import db
 
     if status not in PROGRESS_STATUSES:
         raise ValueError(f"status must be one of {PROGRESS_STATUSES}")
@@ -126,3 +121,10 @@ def update_progress(skill, status):
     if "progress" not in st.session_state:
         st.session_state["progress"] = {}
     st.session_state["progress"][skill] = status
+
+    user_id = st.session_state.get("user_id")
+    if user_id:
+        try:
+            db.save_progress(user_id, skill, status)
+        except Exception as e:
+            print(f"DB save warning: {e}")

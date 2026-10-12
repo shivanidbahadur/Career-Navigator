@@ -3,7 +3,10 @@ AI Career Navigator
 Main Streamlit entry point with a modern "Aurora Glass" 3D dashboard UI.
 Existing authentication, state management, and feature modules are preserved.
 """
+from core.db import init_db
 
+# Initialize database tables (creates users and user_progress tables if they don't exist)
+init_db()
 import streamlit as st
 from core.state import init_state
 from learning.auth import require_login, show_user_sidebar
