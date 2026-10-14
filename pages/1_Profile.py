@@ -1,6 +1,7 @@
 import os
 import json
 import streamlit as st
+from core import db
 
 from learning.auth import require_login, show_user_sidebar
 from ui.theme import apply_theme, section_title, stat_card
@@ -108,17 +109,9 @@ EXPERIENCE_OPTIONS = [
 
 
 INTEREST_OPTIONS = [
-    "AI",
-    "Data",
-    "Software",
-    "Web",
-    "Cloud",
-    "Cybersecurity",
-    "Business",
-    "Research",
-    "Design",
-    "Mobile",
-    "Engineering",
+    "AI", "Data", "Software", "Web", "Cloud", 
+    "Cybersecurity", "Business", "Research", "Design", 
+    "Mobile", "Engineering", "Security", "Infrastructure"
 ]
 
 # ---------- Skill normalization (M1's function, with a temporary fake) ----------
@@ -233,161 +226,229 @@ if existing_target and not existing_target_name:
 
 
 # ============================================================
-# PROFILE FORM
+# INITIALIZE SESSION STATE FOR PROJECTS
 # ============================================================
 
-with st.form("profile_form"):
+existing_projects = existing.get("projects", [])
+if not isinstance(existing_projects, list):
+    existing_projects = []
 
-    st.subheader("Personal Information")
+if "form_projects" not in st.session_state or st.session_state.get("_profile_loaded") != existing:
+    formatted_projects = []
+    for p in existing_projects:
+        if isinstance(p, dict):
+            formatted_projects.append(p)
+        elif isinstance(p, str) and ":" in p:
+            parts = p.split(":", 1)
+            formatted_projects.append({"title": parts[0].strip(), "description": parts[1].strip()})
+        elif isinstance(p, str) and p.strip():
+            formatted_projects.append({"title": p.strip(), "description": ""})
+    st.session_state["form_projects"] = formatted_projects if formatted_projects else []
+    st.session_state["_profile_loaded"] = existing
 
-    name = st.text_input(
-        "Full Name",
-        value=existing.get("name", "")
+
+# ============================================================
+# PROFILE LAYOUT (Natural Order - No st.form wrapper)
+# ============================================================
+
+st.subheader("Personal Information")
+
+name = st.text_input(
+    "Full Name",
+    value=existing.get("name", "")
+)
+
+email = st.text_input(
+    "Email",
+    value=existing.get("email", "")
+)
+
+phone = st.text_input(
+    "Phone Number",
+    value=existing.get("phone", ""),
+    placeholder="+91 9876543210"
+)
+
+linkedin = st.text_input(
+    "LinkedIn Profile URL",
+    value=existing.get("linkedin", ""),
+    placeholder="https://linkedin.com/in/username"
+)
+
+github = st.text_input(
+    "GitHub Profile URL",
+    value=existing.get("github", ""),
+    placeholder="https://github.com/username"
+)
+
+degree = st.text_input(
+    "Degree / Course",
+    value=existing.get("degree", "B.Tech Computer Science and Engineering")
+)
+
+institution = st.text_input(
+    "Institution Name",
+    value=existing.get("institution", "")
+)
+
+grad_year = st.text_input(
+    "Expected Graduation Year",
+    value=existing.get("grad_year", "")
+)
+
+st.subheader("Experience & Internships (Optional)")
+
+experience_title = st.text_input(
+    "Role / Title",
+    value=existing.get("experience_title", ""),
+    placeholder="e.g., Data Analytics Intern"
+)
+
+experience_company = st.text_input(
+    "Company / Organization Name",
+    value=existing.get("experience_company", ""),
+    placeholder="e.g., Learn Depth"
+)
+
+experience_desc = st.text_area(
+    "Experience Description / Key Contributions",
+    value=existing.get("experience_desc", ""),
+    placeholder="e.g., Spearheaded dataset analysis and outlier detection using Python and pandas."
+)
+
+
+# ============================================================
+# PROJECTS SECTION (Placed naturally right here)
+# ============================================================
+
+st.subheader("Projects (Optional)")
+st.markdown("Add any projects you've worked on, or leave blank if you're just starting out.")
+
+updated_projects = []
+for i, proj in enumerate(st.session_state["form_projects"]):
+    col1, col2, col3 = st.columns([1, 2, 0.5])
+    with col1:
+        title = st.text_input(f"Project Name {i+1}", value=proj.get("title", ""), key=f"proj_title_{i}")
+    with col2:
+        desc = st.text_input(f"Description {i+1}", value=proj.get("description", ""), max_chars=150, key=f"proj_desc_{i}")
+    with col3:
+        st.markdown("<div style='height: 28px'></div>", unsafe_allow_html=True)
+        if st.button("Remove", key=f"del_proj_{i}"):
+            st.session_state["form_projects"].pop(i)
+            st.rerun()
+
+    if title.strip() or desc.strip():
+        updated_projects.append({"title": title.strip(), "description": desc.strip()})
+
+if st.button("Add Project"):
+    st.session_state["form_projects"].append({"title": "", "description": ""})
+    st.rerun()
+
+st.write("---")
+
+
+# ============================================================
+# SKILLS
+# ============================================================
+
+st.subheader("Skills")
+
+valid_existing_skills = [
+    skill
+    for skill in existing_skills
+    if skill in SKILL_OPTIONS
+]
+
+selected_skills = st.multiselect(
+    "Select your current skills",
+    options=SKILL_OPTIONS,
+    default=valid_existing_skills,
+    help=(
+        "Select only skills you currently have. "
+        "The system will compare these with your target "
+        "career requirements."
     )
+)
 
-    email = st.text_input(
-        "Email",
-        value=existing.get("email", "")
+
+# ============================================================
+# INTERESTS
+# ============================================================
+
+st.subheader("Interests")
+
+valid_existing_interests = [
+    interest
+    for interest in existing_interests
+    if interest in INTEREST_OPTIONS
+]
+
+interests = st.multiselect(
+    "Select your interests",
+    options=INTEREST_OPTIONS,
+    default=valid_existing_interests
+)
+
+
+# ============================================================
+# EXPERIENCE
+# ============================================================
+
+st.subheader("Experience")
+
+current_experience = existing.get(
+    "experience",
+    "Beginner"
+)
+
+if current_experience not in EXPERIENCE_OPTIONS:
+    current_experience = "Beginner"
+
+experience = st.selectbox(
+    "Experience level",
+    EXPERIENCE_OPTIONS,
+    index=EXPERIENCE_OPTIONS.index(
+        current_experience
     )
-
-    degree = st.text_input(
-        "Degree / Course",
-        value=existing.get("degree", "")
-    )
+)
 
 
-    # ========================================================
-    # SKILLS
-    # ========================================================
+# ============================================================
+# CAREER
+# ============================================================
 
-    st.subheader("Skills")
+st.subheader("Career Goal")
 
-    valid_existing_skills = [
-        skill
-        for skill in existing_skills
-        if skill in SKILL_OPTIONS
-    ]
+career_options = [
+    DONT_KNOW
+] + career_names
 
-    selected_skills = st.multiselect(
-        "Select your current skills",
-        options=SKILL_OPTIONS,
-        default=valid_existing_skills,
-        help=(
-            "Select only skills you currently have. "
-            "The system will compare these with your target "
-            "career requirements."
-        )
-    )
+if existing_target_name in career_names:
+    default_career = existing_target_name
+else:
+    default_career = DONT_KNOW
 
+default_index = career_options.index(
+    default_career
+)
 
-    # ========================================================
-    # INTERESTS
-    # ========================================================
-
-    st.subheader("Interests")
-
-    valid_existing_interests = [
-        interest
-        for interest in existing_interests
-        if interest in INTEREST_OPTIONS
-    ]
-
-    interests = st.multiselect(
-        "Select your interests",
-        options=INTEREST_OPTIONS,
-        default=valid_existing_interests
-    )
+career_choice = st.selectbox(
+    "Career preference",
+    career_options,
+    index=default_index
+)
 
 
-    # ========================================================
-    # EXPERIENCE
-    # ========================================================
+# ============================================================
+# SUBMIT BUTTON
+# ============================================================
 
-    st.subheader("Experience")
-
-    current_experience = existing.get(
-        "experience",
-        "Beginner"
-    )
-
-    if current_experience not in EXPERIENCE_OPTIONS:
-        current_experience = "Beginner"
-
-    experience = st.selectbox(
-        "Experience level",
-        EXPERIENCE_OPTIONS,
-        index=EXPERIENCE_OPTIONS.index(
-            current_experience
-        )
-    )
-
-
-    # ========================================================
-    # PROJECTS
-    # ========================================================
-
-    existing_projects = existing.get(
-        "projects",
-        []
-    )
-
-    if isinstance(existing_projects, list):
-        # Projects can be plain strings (typed here) or dicts
-        # ({title, description}, added on the Resume page).
-        projects_default = "\n".join(
-            p if isinstance(p, str)
-            else f"{p.get('title', '')}: {p.get('description', '')}".strip(": ")
-            for p in existing_projects
-        )
-    else:
-        projects_default = ""
-
-    projects_text = st.text_area(
-        "Projects (one per line)",
-        value=projects_default,
-        placeholder=(
-            "Example:\n"
-            "AI Road Pothole Detection\n"
-            "AI Career Navigator"
-        )
-    )
-
-
-    # ========================================================
-    # CAREER
-    # ========================================================
-
-    st.subheader("Career Goal")
-
-    career_options = [
-        DONT_KNOW
-    ] + career_names
-
-    # Determine current selection
-    if existing_target_name in career_names:
-        default_career = existing_target_name
-    else:
-        default_career = DONT_KNOW
-
-    default_index = career_options.index(
-        default_career
-    )
-
-    career_choice = st.selectbox(
-        "Career preference",
-        career_options,
-        index=default_index
-    )
-
-
-    # ========================================================
-    # SUBMIT
-    # ========================================================
-
-    submitted = st.form_submit_button(
-        "💾 Save Profile",
-        use_container_width=True
-    )
+st.markdown("<br>", unsafe_allow_html=True)
+submitted = st.button(
+    "💾 Save Profile",
+    use_container_width=True,
+    type="primary"
+)
 
 
 # ============================================================
@@ -396,25 +457,21 @@ with st.form("profile_form"):
 
 if submitted:
 
-    # Clean projects
-    projects = [
-        project.strip()
-        for project in projects_text.split("\n")
-        if project.strip()
+    # Clean structured projects (fully optional)
+    final_projects = [
+        {"title": p["title"].strip(), "description": p["description"].strip()}
+        for p in updated_projects
+        if p.get("title") and p.get("title").strip()
     ]
 
     # Convert career name → career_id
     if career_choice == DONT_KNOW:
-
         target = None
         target_career_name = None
-
     else:
-
         target = name_to_id.get(
             career_choice
         )
-
         target_career_name = career_choice
 
 
@@ -431,17 +488,28 @@ if submitted:
     profile = {
         "name": name.strip(),
         "email": email.strip(),
+        
+        # --- CONTACT & EDUCATION KEYS ---
+        "phone": phone.strip(),
+        "linkedin": linkedin.strip(),
+        "github": github.strip(),
         "degree": degree.strip(),
+        "institution": institution.strip(),
+        "grad_year": grad_year.strip(),
+        "experience_title": experience_title.strip(),
+        "experience_company": experience_company.strip(),
+        "experience_desc": experience_desc.strip(),
+        # -------------------------------
+
         "skills": unique_skills,
         "interests": interests,
         "experience": experience,
-        "projects": projects,
+        "projects": final_projects,
 
         # IMPORTANT FOR MEMBER 1 + MEMBER 4
         "target_career": target,
         "target_career_name": target_career_name,
     }
-
 
     st.session_state["profile"] = profile
 
@@ -452,7 +520,12 @@ if submitted:
     st.session_state["target_career"] = target
     st.session_state["target_career_name"] = target_career_name
     st.session_state["experience"] = experience
-
+    user_id = st.session_state.get("user_id")
+    if user_id:
+        try:
+            db.save_profile(user_id, profile)
+        except Exception as exc:
+            st.warning(f"Saved for this session, but not to the database: {exc}")
 
     # --------------------------------------------------------
     # SUCCESS

@@ -3,6 +3,7 @@ from learning.auth import require_login, show_user_sidebar
 from learning.roadmap import build_roadmap, get_resources, update_progress
 from core.gaps import get_skill_gaps
 from ui.theme import apply_theme, section_title, stat_card
+from core import db
 
 st.set_page_config(
     page_title="AI Career Navigator - Roadmap",
@@ -30,7 +31,7 @@ st.markdown(
 
 # ---------- 1. Get Gaps using M1's core engine ----------
 profile = st.session_state.get("profile", {})
-target_career = profile.get("target_career")
+target_career = profile.get("target_career") or st.session_state.get("target_career")
 user_skills = profile.get("skills", [])
 
 if target_career:
@@ -51,9 +52,10 @@ else:
     # ---------- 2. Build Roadmap & Progress Tracker ----------
     roadmap = build_roadmap(gaps)
 
-    # Initialize progress states if not already present
+    # Initialize progress states from database if not already present
     if "progress" not in st.session_state:
-        st.session_state["progress"] = {}
+        user_id = st.session_state.get("user_id")
+        st.session_state["progress"] = db.get_progress(user_id) if user_id else {}
 
     progress_dict = st.session_state["progress"]
 

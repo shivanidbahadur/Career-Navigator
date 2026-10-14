@@ -1,5 +1,6 @@
 import sqlite3
 import uuid
+import json
 
 DB_PATH = "data/app.db"
 
@@ -21,6 +22,12 @@ def init_db():
             email TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL
         )
+    """)
+    conn.execute("""
+    CREATE TABLE IF NOT EXISTS user_profiles (
+        user_id TEXT PRIMARY KEY,
+        profile_json TEXT NOT NULL
+    )
     """)
     
     # User progress table
@@ -85,3 +92,21 @@ def get_progress(user_id):
     rows = c.fetchall()
     conn.close()
     return {row["skill"]: row["status"] for row in rows}
+
+
+def save_profile(user_id, profile: dict):
+    conn = get_connection()
+    conn.execute(
+        "INSERT OR REPLACE INTO user_profiles (user_id, profile_json) VALUES (?, ?)",
+        (user_id, json.dumps(profile)),
+    )
+    conn.commit()
+    conn.close()
+
+def get_profile(user_id):
+    conn = get_connection()
+    row = conn.execute(
+        "SELECT profile_json FROM user_profiles WHERE user_id = ?", (user_id,)
+    ).fetchone()
+    conn.close()
+    return json.loads(row["profile_json"]) if row else None

@@ -147,8 +147,17 @@ def restore_session():
     record = _find_session(_hash_token(token))
     if record is None:
         return False
-    st.session_state["user"] = {"name": record["name"], "email": record["email"]}
+    db_user = db.get_user_by_email(record["email"])
+    if db_user is None:
+        return False  # account no longer exists
+    st.session_state["user"] = {
+        "user_id": db_user["user_id"],
+        "name": db_user["name"],
+        "email": db_user["email"],
+    }
+    st.session_state["user_id"] = db_user["user_id"]
     st.session_state["session_token"] = token
+    load_user_data(db_user["user_id"])
     return True
 
 
@@ -205,7 +214,8 @@ def login_form():
                     st.error("Wrong email or password.")
                 else:
                     st.session_state["user"] = user
-                    st.session_state["user_id"] = user["user_id"]  # <--- Add this line
+                    st.session_state["user_id"] = user["user_id"] 
+                    load_user_data(user["user_id"])
                     st.session_state.pop("_just_logged_out", None)
                     start_session(user)
                     st.rerun()
@@ -268,3 +278,41 @@ def show_user_sidebar():
         st.write(f"Logged in as **{user['name']}**")
         if st.button("Log out", key="logout_btn"):
             logout()
+
+def load_user_data(user_id):
+    """Pull the user's saved progress and profile from SQLite into session_state."""
+    st.session_state["progress"] = db.get_progress(user_id)
+    profile = db.get_profile(user_id)
+    if profile:
+        st.session_state["profile"] = profile
+        st.session_state["skills"] = profile.get("skills", [])
+        st.session_state["target_career"] = profile.get("target_career")
+        st.session_state["target_career_name"] = profile.get("target_career_name")
+        st.session_state["experience"] = profile.get("experience")
+    else:
+        st.session_state.pop("profile", None)
+
+def save_target_career(career_id, career_name):
+    """Set the target career everywhere and save it to SQLite."""
+    profile = st.session_state.get("profile", {})
+    profile["target_career"] = career_id
+    profile["target_career_name"] = career_name
+    st.session_state["profile"] = profile
+    st.session_state["target_career"] = career_id
+    st.session_state["target_career_name"] = career_name
+    user_id = st.session_state.get("user_id")
+    if user_id:
+        db.save_profile(user_id, profile)
+
+        
+def save_target_career(career_id, career_name):
+    """Set the target career everywhere and save it to SQLite."""
+    profile = st.session_state.get("profile", {})
+    profile["target_career"] = career_id
+    profile["target_career_name"] = career_name
+    st.session_state["profile"] = profile
+    st.session_state["target_career"] = career_id
+    st.session_state["target_career_name"] = career_name
+    user_id = st.session_state.get("user_id")
+    if user_id:
+        db.save_profile(user_id, profile)
