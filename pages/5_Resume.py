@@ -1,4 +1,4 @@
-import streamlit as st
+﻿import streamlit as st
 import sys
 import os
 
@@ -10,7 +10,7 @@ from ui.theme import apply_theme, section_title
 
 st.set_page_config(
     page_title="AI Career Navigator - Resume",
-    page_icon="📄",
+    page_icon="ðŸ“„",
     layout="wide",
 )
 apply_theme()
@@ -18,7 +18,7 @@ apply_theme()
 st.markdown(
     """
     <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
-        <div class="fg-eyebrow">✦ Resume Studio</div>
+        <div class="fg-eyebrow">âœ¦ Resume Studio</div>
         <h1 style="font-size:clamp(30px,3.6vw,46px);">Build a resume that <span class="fg-gradient-text">gets noticed</span>.</h1>
         <p style="font-size:15.5px;">
             Add projects, generate a clean ATS-friendly resume, and get
@@ -38,7 +38,7 @@ init_state()
 
 user_profile = st.session_state.get("profile", {})
 
-# A resume needs the student's real name — ask them to complete the
+# A resume needs the student's real name â€” ask them to complete the
 # Profile page if they haven't yet.
 if not user_profile.get("name"):
     st.warning(
@@ -58,7 +58,6 @@ def _as_project(p):
         "title": p.get("title", "Project"),
         "description": p.get("description", ""),
     }
-
 
 # Projects added here on the Resume page are kept in their own list so
 # the shared Profile data stays untouched; they're merged in for the
@@ -83,21 +82,28 @@ resume_profile = {
 career_id = user_profile.get("target_career") or "data_analyst"
 
 # Keep the session key in sync for any other modules that read it.
-st.session_state.resume_profile = resume_profile
-
-profile = st.session_state.resume_profile
+st.session_state["resume_profile"] = resume_profile
+profile = resume_profile
 
 st.caption(
-    f"📄 Built from your Profile: **{profile['name']}** • "
-    f"{profile['email'] or 'no email yet'} • "
-    f"{len(profile['skills'])} skills • "
+    f"ðŸ“„ Built from your Profile: **{profile['name']}** â€¢ "
+    f"{profile['email'] or 'no email yet'} â€¢ "
+    f"{len(profile['skills'])} skills â€¢ "
     f"{len(profile['projects'])} projects"
 )
 
 st.subheader("Add a Project")
 with st.form("project_form", clear_on_submit=True):
-    proj_title = st.text_input("Project Title")
-    proj_desc = st.text_area("Project Description")
+
+    proj_title = st.text_input(
+        "Project Title",
+        max_chars=100
+    )
+    proj_desc = st.text_area(
+        "Project Description",
+        max_chars=2000
+    )
+
     submitted = st.form_submit_button("Add Project")
     if submitted and proj_title:
         st.session_state["resume_extra_projects"].append(
@@ -122,8 +128,7 @@ st.session_state["resume_html"] = resume_html
 st.session_state["resume_generated"] = True
 
 st.subheader("Preview")
-st.iframe(st.session_state["resume_html"], height=500)
-
+st.components.v1.html(resume_html, height=800, scrolling=True)
 st.download_button(
     label="Download Resume (HTML)",
     data=st.session_state["resume_html"],
@@ -137,4 +142,4 @@ if suggestions:
     for s in suggestions:
         st.write(f"- {s['suggestion']}")
 else:
-    st.write("No suggestions right now — either you're fully matched, or career data isn't loaded yet.")
+    st.write("No suggestions right now â€” either you're fully matched, or career data isn't loaded yet.")
