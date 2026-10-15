@@ -68,13 +68,20 @@ if "resume_extra_projects" not in st.session_state:
 resume_profile = {
     "name": user_profile.get("name", ""),
     "email": user_profile.get("email", ""),
+    "phone": user_profile.get("phone", ""),
+    "linkedin": user_profile.get("linkedin", ""),
+    "github": user_profile.get("github", ""),
     "degree": user_profile.get("degree", ""),
+    "institution": user_profile.get("institution", ""),
     "branch": user_profile.get("branch", ""),
     "grad_year": user_profile.get("grad_year", ""),
+    "experience_title": user_profile.get("experience_title", ""),
+    "experience_company": user_profile.get("experience_company", ""),
+    "experience_desc": user_profile.get("experience_desc", ""),
+    "experience": user_profile.get("experience", "Fresher"),
     "skills": user_profile.get("skills", []),
     "projects": [_as_project(p) for p in user_profile.get("projects", [])]
     + st.session_state["resume_extra_projects"],
-    "experience": user_profile.get("experience", "Fresher"),
 }
 
 # Use the student's chosen target career if they set one on the
