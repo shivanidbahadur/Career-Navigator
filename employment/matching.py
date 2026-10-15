@@ -1,55 +1,83 @@
+
 import json
+import os
 
 
 def load_jobs():
-    """Load all jobs from data/jobs.json"""
-    with open("data/jobs.json", "r") as f:
+    """Load all jobs from data/jobs.json."""
+    project_root = os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+    jobs_path = os.path.join(project_root, "data", "jobs.json")
+
+    with open(jobs_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def match_jobs(skills, career_id):
-    """
-    Given the student's skills and their target career_id,
-    return jobs sorted by match percentage (best first).
+    """Match jobs based on skills and target career."""
 
-    skills: list[str] - the student's current skills
-    career_id: str - the student's target career, e.g. "data_scientist"
-    """
     jobs = load_jobs()
-    skill_set = set(skills)
+
+    # Ignore differences in capitalization and extra spaces.
+    skill_set = {
+        skill.strip().casefold()
+        for skill in skills
+        if isinstance(skill, str) and skill.strip()
+    }
+
     results = []
 
     for job in jobs:
-        required = job["required_skills"]
-        matched = [s for s in required if s in skill_set]
-        missing = [s for s in required if s not in skill_set]
+        required = job.get("required_skills", [])
 
-        match_pct = (len(matched) / len(required)) * 100 if required else 0
+        matched = [
+            skill for skill in required
+            if isinstance(skill, str)
+            and skill.strip().casefold() in skill_set
+        ]
 
-        # Small boost if the job relates to the student's target career.
-        # We check this by seeing if the career name (with spaces removed
-        # and lowercased) appears in the job title.
-        career_name = career_id.replace("_", " ").lower()
-        if career_name in job["title"].lower():
+        missing = [
+            skill for skill in required
+            if not isinstance(skill, str)
+            or skill.strip().casefold() not in skill_set
+        ]
+
+        match_pct = (
+            (len(matched) / len(required)) * 100
+            if required else 0
+        )
+
+        # Small bonus when the title matches the target career.
+        career_name = (
+            career_id.replace("_", " ").casefold()
+            if isinstance(career_id, str)
+            else ""
+        )
+
+        job_title = job.get("title", "").casefold()
+
+        if career_name and career_name in job_title:
             match_pct = min(100, match_pct + 10)
 
         results.append({
-            "title": job["title"],
-            "company": job["company"],
+            "title": job.get("title", "Untitled Role"),
+            "company": job.get("company", "Unknown Company"),
             "match_pct": round(match_pct, 1),
-            "missing": missing
+            "missing": missing,
         })
 
-    results.sort(key=lambda x: x["match_pct"], reverse=True)
+    results.sort(
+        key=lambda job: job["match_pct"],
+        reverse=True,
+    )
+
     return results
 
 
 if __name__ == "__main__":
-    # Quick manual test using the example from the spec:
-    # student has Python, SQL, Excel; a job needs Python, SQL, Excel, Power BI -> 75%
-    test_skills = ["Python", "SQL", "Excel"]
+    test_skills = ["python", "SQL", "Excel"]
     test_career = "data_analyst"
 
-    output = match_jobs(test_skills, test_career)
-    for job in output[:5]:
+    for job in match_jobs(test_skills, test_career)[:5]:
         print(job)
