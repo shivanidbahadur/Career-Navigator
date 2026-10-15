@@ -1,4 +1,5 @@
 from html import escape
+
 def generate_resume(profile, career_id):
     """Generate a professional, ATS-friendly HTML resume."""
 
@@ -22,44 +23,68 @@ def generate_resume(profile, career_id):
             title = str(project)
             description = ""
 
-        projects_html += f"""
-        <div class="project">
-            <strong>{escape(str(title))}</strong>
-            {f'<p>{escape(str(description))}</p>' if description else ''}
-        </div>
-        """
+        if title.strip() or description.strip():
+            projects_html += f"""
+            <div class="project">
+                <strong>{escape(str(title))}</strong>
+                {f'<p>{escape(str(description))}</p>' if description else ''}
+            </div>
+            """
 
-    # Show skills as simple text for better ATS readability.
-    skills_html = "".join(
-        f'<span class="skill">{escape(str(skill))}</span>'
+    # Skills as clean text / comma-separated (removed border boxes as requested)
+    skills_html = ", ".join(
+        f'<span>{escape(str(skill))}</span>'
         for skill in ordered_skills
-    )
+    ) if ordered_skills else ""
+
+    # Certifications formatting
+    certs_html = ""
+    for cert in profile.get("certifications") or []:
+        if cert.strip():
+            certs_html += f"<li>{escape(str(cert))}</li>"
 
     name = escape(str(profile.get("name") or "Student Name"))
     email = escape(str(profile.get("email") or ""))
+    phone = escape(str(profile.get("phone") or ""))
+    linkedin = escape(str(profile.get("linkedin") or ""))
+    github = escape(str(profile.get("github") or ""))
+    
     degree = escape(str(profile.get("degree") or ""))
     branch = escape(str(profile.get("branch") or ""))
+    institution = escape(str(profile.get("institution") or ""))
     grad_year = escape(str(profile.get("grad_year") or ""))
-    experience = escape(str(profile.get("experience") or "Fresher"))
 
-    education_parts = [
-        value for value in [degree, branch] if value
-    ]
-    education_title = " - ".join(education_parts)
+    # Detailed experience fields
+    exp_title = escape(str(profile.get("experience_title") or ""))
+    exp_company = escape(str(profile.get("experience_company") or ""))
+    exp_desc = escape(str(profile.get("experience_desc") or ""))
+    fallback_experience = escape(str(profile.get("experience") or ""))
 
+    # Build contact line cleanly
+    contact_items = []
+    if email: contact_items.append(email)
+    if phone: contact_items.append(phone)
+    if linkedin: contact_items.append(f'<a href="{linkedin}">LinkedIn</a>')
+    if github: contact_items.append(f'<a href="{github}">GitHub</a>')
+    
+    contact_section = (
+        f'<div class="contact">{" | ".join(contact_items)}</div>' if contact_items else ""
+    )
+
+    # Education title assembly
+    edu_parts = [p for p in [degree, branch] if p]
+    edu_line = " - ".join(edu_parts)
+    if institution:
+        edu_line = f"{edu_line} at {institution}" if edu_line else institution
     if grad_year:
-        education_title += (
-            f" | Expected Graduation: {grad_year}"
-            if education_title else f"Expected Graduation: {grad_year}"
-        )
+        edu_line += f" (Expected Graduation: {grad_year})" if edu_line else f"Expected Graduation: {grad_year}"
 
-    # Do not display empty sections.
     education_section = ""
-    if education_title:
+    if edu_line.strip():
         education_section = f"""
         <section>
             <h2>Education</h2>
-            <p>{education_title}</p>
+            <p>{edu_line}</p>
         </section>
         """
 
@@ -68,7 +93,7 @@ def generate_resume(profile, career_id):
         skills_section = f"""
         <section>
             <h2>Technical Skills</h2>
-            <div class="skills">{skills_html}</div>
+            <p>{skills_html}</p>
         </section>
         """
 
@@ -82,17 +107,30 @@ def generate_resume(profile, career_id):
         """
 
     experience_section = ""
-    if experience.strip():
+    if exp_title or exp_company or exp_desc:
         experience_section = f"""
         <section>
             <h2>Experience</h2>
-            <p>{experience}</p>
+            <p><strong>{exp_title}</strong>{f" at <em>{exp_company}</em>" if exp_company else ""}</p>
+            {f"<p>{exp_desc}</p>" if exp_desc else ""}
+        </section>
+        """
+    elif fallback_experience and fallback_experience != "Fresher":
+        experience_section = f"""
+        <section>
+            <h2>Experience</h2>
+            <p>{fallback_experience}</p>
         </section>
         """
 
-    contact_section = (
-        f'<div class="contact">{email}</div>' if email else ""
-    )
+    certifications_section = ""
+    if certs_html:
+        certifications_section = f"""
+        <section>
+            <h2>Certifications</h2>
+            <ul>{certs_html}</ul>
+        </section>
+        """
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -105,11 +143,9 @@ def generate_resume(profile, career_id):
             size: A4;
             margin: 15mm;
         }}
-
         * {{
             box-sizing: border-box;
         }}
-
         body {{
             font-family: Arial, Helvetica, sans-serif;
             font-size: 10.5pt;
@@ -120,30 +156,29 @@ def generate_resume(profile, career_id):
             margin: 0 auto;
             padding: 32px;
         }}
-
         header {{
             border-bottom: 3px solid #24476b;
             padding-bottom: 16px;
             margin-bottom: 22px;
         }}
-
         h1 {{
             color: #183653;
             font-size: 27pt;
             margin: 0 0 5px;
             overflow-wrap: anywhere;
         }}
-
         .contact {{
             color: #4b5563;
             overflow-wrap: anywhere;
         }}
-
+        .contact a {{
+            color: #24476b;
+            text-decoration: none;
+        }}
         section {{
             margin-top: 20px;
             break-inside: avoid;
         }}
-
         h2 {{
             font-size: 13pt;
             color: #24476b;
@@ -153,36 +188,20 @@ def generate_resume(profile, career_id):
             padding-bottom: 5px;
             margin: 0 0 10px;
         }}
-
-        p {{
+        p, ul {{
             margin: 5px 0;
             overflow-wrap: anywhere;
         }}
-
-        .skills {{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
+        ul {{
+            padding-left: 20px;
         }}
-
-        .skill {{
-            display: inline-block;
-            border: 1px solid #cbd5e1;
-            border-radius: 3px;
-            padding: 3px 8px;
-            margin: 2px 3px 2px 0;
-            color: #263238;
-        }}
-
         .project {{
             margin-bottom: 12px;
             break-inside: avoid;
         }}
-
         .project strong {{
             color: #183653;
         }}
-
         @media print {{
             body {{
                 max-width: none;
@@ -190,13 +209,8 @@ def generate_resume(profile, career_id):
                 padding: 0;
                 font-size: 10pt;
             }}
-
             header, section, .project {{
                 break-inside: avoid;
-            }}
-
-            .skill {{
-                background: none;
             }}
         }}
     </style>
@@ -208,9 +222,10 @@ def generate_resume(profile, career_id):
     </header>
 
     {education_section}
+    {experience_section}
     {skills_section}
     {projects_section}
-    {experience_section}
+    {certifications_section}
 </body>
 </html>
 """
@@ -218,12 +233,6 @@ def generate_resume(profile, career_id):
 
 
 def get_career_skill_order(career_id):
-    """
-    Loads careers.json and returns a dict of {skill_name: weight}
-    for the given career, so skills can be sorted by importance.
-    Returns an empty dict if careers.json or the career isn't found
-    (so the resume still works even before Member 1's file is ready).
-    """
     import json
     import os
 
@@ -240,11 +249,6 @@ def get_career_skill_order(career_id):
 
 
 def analyze_resume(profile, career_id):
-    """
-    Compares the student's skills against the target career's Required
-    skills and returns suggestions for missing ones.
-    Returns an empty list if careers.json isn't available yet.
-    """
     import json
     import os
 
@@ -270,7 +274,6 @@ def analyze_resume(profile, career_id):
             })
 
     return suggestions
-
 
 if __name__ == "__main__":
     # Quick manual test with a fake profile (careers.json doesn't exist yet,
