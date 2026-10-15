@@ -64,6 +64,9 @@ def _as_project(p):
 # resume view only.
 if "resume_extra_projects" not in st.session_state:
     st.session_state["resume_extra_projects"] = []
+# Ensure roadmap / session skills sync directly into resume profile
+# Ensure roadmap / session skills sync directly into resume profile
+active_skills = st.session_state.get("skills", user_profile.get("skills", []))
 
 resume_profile = {
     "name": user_profile.get("name", ""),
@@ -78,10 +81,10 @@ resume_profile = {
     "experience_title": user_profile.get("experience_title", ""),
     "experience_company": user_profile.get("experience_company", ""),
     "experience_desc": user_profile.get("experience_desc", ""),
-    "experience": user_profile.get("experience", "Fresher"),
-    "skills": user_profile.get("skills", []),
+    "skills": active_skills,
     "projects": [_as_project(p) for p in user_profile.get("projects", [])]
     + st.session_state["resume_extra_projects"],
+    "certifications": user_profile.get("certifications", []),
 }
 
 # Use the student's chosen target career if they set one on the

@@ -346,6 +346,29 @@ if st.button("Add Project"):
 
 st.write("---")
 
+# ============================================================
+# CERTIFICATIONS SECTION (Optional)
+# ============================================================
+
+st.subheader("Certifications (Optional)")
+st.markdown("Add any professional certifications or courses you've completed (one per line).")
+
+existing_certs = existing.get("certifications", [])
+if isinstance(existing_certs, list):
+    existing_certs_str = "\n".join(existing_certs)
+else:
+    existing_certs_str = str(existing_certs)
+
+certs_input = st.text_area(
+    "Certifications",
+    value=existing_certs_str,
+    placeholder="e.g., AWS Certified Developer\nGoogle Data Analytics Certificate",
+    key="profile_certs_input"
+)
+
+final_certifications = [
+    c.strip() for c in certs_input.split("\n") if c.strip()
+]
 
 # ============================================================
 # SKILLS
@@ -505,6 +528,7 @@ if submitted:
         "interests": interests,
         "experience": experience,
         "projects": final_projects,
+        "certifications": final_certifications,  # <--- ADD THIS LINE HERE
 
         # IMPORTANT FOR MEMBER 1 + MEMBER 4
         "target_career": target,
