@@ -1,0 +1,7 @@
+# Runtime dependencies for the AI Career Navigator Streamlit app.
+# Every import here is used by app.py or the pages/ modules.
+
+streamlit>=1.61,<2
+bcrypt>=4.1,<6
+streamlit-cookies-controller>=0.0.4
+anthropic>=0.40
