@@ -1,24 +1,33 @@
+
 import streamlit as st
+
 from learning.auth import require_login, show_user_sidebar
 from learning.roadmap import build_roadmap, get_resources, update_progress
 from core.gaps import get_skill_gaps
-from ui.theme import apply_theme, section_title, stat_card
+from ui.theme import apply_theme, section_title, tool_step_nav
 
+
+# ---------- Page Configuration ----------
 st.set_page_config(
     page_title="AI Career Navigator - Roadmap",
     page_icon="🗺️",
     layout="wide",
 )
+
 apply_theme()
 
 require_login()
 show_user_sidebar()
 
+
+# ---------- Page Header ----------
 st.markdown(
     """
     <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
         <div class="fg-eyebrow">✦ Skill Roadmap</div>
-        <h1 style="font-size:clamp(30px,3.6vw,46px);">Your path, <span class="fg-gradient-text">phase by phase</span>.</h1>
+        <h1 style="font-size:clamp(30px,3.6vw,46px);">
+            Your path, <span class="fg-gradient-text">phase by phase</span>.
+        </h1>
         <p style="font-size:15.5px;">
             Work through prioritized skill phases with curated resources
             and track progress as you go.
@@ -28,7 +37,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- 1. Get Gaps using M1's core engine ----------
+
+# ---------- 1. Get Skill Gaps ----------
 profile = st.session_state.get("profile", {})
 target_career = profile.get("target_career")
 user_skills = profile.get("skills", [])
@@ -36,7 +46,7 @@ user_skills = profile.get("skills", [])
 if target_career:
     gaps = get_skill_gaps(user_skills, target_career)
 else:
-    # Fallback if no target career selected yet
+    # Fallback if no target career has been selected
     gaps = [
         {"skill": "Statistics", "priority": "High", "weight": 5},
         {"skill": "Machine Learning", "priority": "High", "weight": 5},
@@ -45,28 +55,108 @@ else:
         {"skill": "Cloud Computing", "priority": "Low", "weight": 2},
     ]
 
+
+# ---------- 2. Build Roadmap and Progress Tracker ----------
 if not gaps:
-    st.success("You have no skill gaps for this career! You're ready to go.")
+    st.success(
+        "You have no skill gaps for this career! You're ready to go."
+    )
+
 else:
-    # ---------- 2. Build Roadmap & Progress Tracker ----------
     roadmap = build_roadmap(gaps)
 
-    # Initialize progress states if not already present
+    # Initialize progress state
     if "progress" not in st.session_state:
         st.session_state["progress"] = {}
 
     progress_dict = st.session_state["progress"]
 
-    # Calculate overall progress percentage
+    # ---------- Calculate Overall Progress ----------
     total_skills = len(gaps)
-    completed_count = sum(1 for s in gaps if progress_dict.get(s["skill"]) == "Completed")
-    progress_pct = completed_count / total_skills if total_skills > 0 else 0
 
+    completed_count = sum(
+        1
+        for item in gaps
+        if progress_dict.get(item["skill"]) == "Completed"
+    )
+
+    progress_pct = (
+        completed_count / total_skills
+        if total_skills > 0
+        else 0.0
+    )
+
+    # ---------- Overall Progress ----------
     section_title("Overall Progress", "📈")
-    st.progress(progress_pct, text=f"{completed_count} of {total_skills} skills completed")
+
+    progress_label = (
+        f"{completed_count} of {total_skills} skills completed"
+    )
+
+    progress_width = max(
+        0.0,
+        min(progress_pct * 100, 100.0),
+    )
+
+    # Custom HTML progress bar.
+    # Rendered with st.html() instead of st.markdown(): markdown would end
+    # the HTML block at the blank line below, and the following indented
+    # <div> would then be shown as a literal code block instead of a bar.
+    st.html(
+        f"""
+        <div style="
+            width:100%;
+            margin:8px 0 20px;
+            font-family:inherit;
+        ">
+            <div style="
+                color:#ffffff;
+                font-size:15px;
+                font-weight:500;
+                margin-bottom:10px;
+                line-height:1.5;
+            ">
+                {progress_label}
+            </div>
+
+            <div
+                role="progressbar"
+                aria-label="{progress_label}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="{progress_width:.2f}"
+                style="
+                    display:block;
+                    width:100%;
+                    height:12px;
+                    background:#172033;
+                    border:1px solid #334155;
+                    border-radius:999px;
+                    overflow:hidden;
+                    box-sizing:border-box;
+                "
+            >
+                <div style="
+                    display:block;
+                    width:{progress_width:.2f}%;
+                    height:100%;
+                    background:linear-gradient(
+                        90deg,
+                        #22d3ee 0%,
+                        #818cf8 55%,
+                        #c084fc 100%
+                    );
+                    border-radius:inherit;
+                    transition:width 0.4s ease;
+                "></div>
+            </div>
+        </div>
+        """
+    )
+
     st.write("---")
 
-    # ---------- 3. Render Phases and Skills ----------
+    # ---------- 3. Render Roadmap Phases and Skills ----------
     for phase_item in roadmap:
         phase_name = phase_item["phase"]
         phase_skills = phase_item["skills"]
@@ -74,11 +164,20 @@ else:
         st.markdown(f"### 🚀 Phase: {phase_name}")
 
         for skill in phase_skills:
-            # Find the gap metadata (priority) for styling/display
-            gap_info = next((g for g in gaps if g["skill"] == skill), {"priority": "Medium"})
+
+            # Find skill metadata and priority
+            gap_info = next(
+                (
+                    item
+                    for item in gaps
+                    if item["skill"] == skill
+                ),
+                {"priority": "Medium"},
+            )
+
             priority = gap_info.get("priority", "Medium")
 
-            # Color tag for priority
+            # Priority labels
             if priority == "High":
                 badge = "🔴 High Priority"
             elif priority == "Medium":
@@ -87,29 +186,56 @@ else:
                 badge = "🟢 Low Priority"
 
             with st.expander(f"{skill} ({badge})"):
-                # Current status dropdown
-                current_status = progress_dict.get(skill, "Not Started")
-                new_status = st.selectbox(
-                    "Status",
-                    ["Not Started", "In Progress", "Completed"],
-                    index=["Not Started", "In Progress", "Completed"].index(current_status),
-                    key=f"status_{skill}"
+
+                # Current skill status
+                current_status = progress_dict.get(
+                    skill,
+                    "Not Started",
                 )
 
+                status_options = [
+                    "Not Started",
+                    "In Progress",
+                    "Completed",
+                ]
+
+                new_status = st.selectbox(
+                    "Status",
+                    status_options,
+                    index=(
+                        status_options.index(current_status)
+                        if current_status in status_options
+                        else 0
+                    ),
+                    key=f"status_{skill}",
+                )
+
+                # Update status using existing function
                 if new_status != current_status:
                     update_progress(skill, new_status)
                     st.rerun()
 
-                # Show learning resources
+                # ---------- Learning Resources ----------
                 st.markdown("**Learning Resources:**")
+
                 resources = get_resources(skill)
 
                 if not resources:
-                    st.info("No resources found for this skill yet.")
+                    st.info(
+                        "No resources found for this skill yet."
+                    )
                 else:
-                    for r in resources:
+                    for resource in resources:
                         st.markdown(
-                            f"- [{r['title']}]({r['url']}) "
-                            f"*(Type: {r['type'].title()} | Difficulty: {r['difficulty'].title()})*"
+                            f"- [{resource['title']}]"
+                            f"({resource['url']}) "
+                            f"*(Type: {resource['type'].title()} "
+                            f"| Difficulty: "
+                            f"{resource['difficulty'].title()})*"
                         )
+
         st.write("")
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/3_Roadmap.py")
+

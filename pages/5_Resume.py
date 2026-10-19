@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from employment.resume import generate_resume, analyze_resume
 from core.state import init_state
-from ui.theme import apply_theme, section_title
+from ui.theme import apply_theme, section_title, tool_step_nav
 
 st.set_page_config(
     page_title="AI Career Navigator - Resume",
@@ -45,6 +45,7 @@ if not user_profile.get("name"):
         "Complete your Profile page first. Your resume will then use "
         "the name, email, skills and projects you saved there."
     )
+    tool_step_nav("pages/5_Resume.py")
     st.stop()
 
 
@@ -138,3 +139,7 @@ if suggestions:
         st.write(f"- {s['suggestion']}")
 else:
     st.write("No suggestions right now — either you're fully matched, or career data isn't loaded yet.")
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/5_Resume.py")
+

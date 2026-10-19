@@ -15,7 +15,7 @@ from core.skills import get_effective_skills
 from core.recommend import recommend_careers
 from core.gaps import get_skill_gaps
 from core.readiness import compute_readiness
-from ui.theme import apply_theme, section_title, stat_card
+from ui.theme import apply_theme, section_title, stat_card, tool_step_nav
 
 st.set_page_config(
     page_title="AI Career Navigator - Dashboard",
@@ -45,6 +45,7 @@ profile = st.session_state["profile"]
 if not profile["skills"] or not profile["target_career"]:
     st.warning("No target career set yet. Go to the Careers page first, "
                "enter your skills, and choose a target career.")
+    tool_step_nav("pages/7_Dashboard.py")
     st.stop()
 
 # ---- Find the target career's display name ----
@@ -127,3 +128,6 @@ st.caption(
     "Note: feedback here is guidance for self-improvement, not a hiring "
     "decision. No sensitive personal attributes are used in scoring."
 )
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/7_Dashboard.py")

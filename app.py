@@ -7,7 +7,7 @@ Existing authentication, state management, and feature modules are preserved.
 import streamlit as st
 from core.state import init_state
 from learning.auth import require_login, show_user_sidebar
-from ui.theme import apply_theme, section_title, tilt_card, stat_card
+from ui.theme import apply_theme, section_title, tilt_card, stat_card, TOOL_STEPS
 
 # Page configuration must be the first Streamlit command.
 st.set_page_config(
@@ -51,19 +51,10 @@ st.markdown(
 
 section_title("Your Career Toolkit", "🧰")
 
-features = [
-    ("🎯", "Career Recommendations", "Find career paths that match your profile, skills and interests."),
-    ("📊", "Skill-Gap Analysis", "Understand the skills you already have and the areas you need to improve."),
-    ("🗺️", "Learning Roadmap", "Follow a personalized step-by-step plan toward your target career."),
-    ("💼", "Jobs & Internships", "Explore opportunities that match your career profile."),
-    ("📄", "Resume Builder", "Create a professional, ATS-friendly resume."),
-    ("🎤", "AI Mock Interview", "Practice personalized interview questions and receive feedback."),
-]
-
 cols = st.columns(3, gap="medium")
-for col, (icon, title, description) in zip(cols * 2, features):
+for col, (icon, title, description, page) in zip(cols * 2, TOOL_STEPS):
     with col:
-        tilt_card(icon, title, description)
+        tilt_card(icon, title, description, page=page)
 
 section_title("Profile Status", "📡")
 

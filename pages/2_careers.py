@@ -9,7 +9,7 @@ from core.state import init_state
 from core.skills import normalize_skills, get_effective_skills
 from core.recommend import recommend_careers
 from core.gaps import get_skill_gaps
-from ui.theme import apply_theme, section_title, stat_card
+from ui.theme import apply_theme, section_title, stat_card, tool_step_nav
 
 st.set_page_config(
     page_title="AI Career Navigator - Careers",
@@ -57,6 +57,7 @@ if not profile["skills"]:
         profile["interests"] = [i.strip() for i in interests_input.split(",") if i.strip()]
         st.rerun()
 
+    tool_step_nav("pages/2_careers.py")
     st.stop()  # don't show the rest of the page until skills exist
 
 # ---- Show top 5 career recommendations ----
@@ -124,3 +125,6 @@ if profile["target_career"]:
             badge = priority_colors.get(gap["priority"], "⚪")
             st.write(f"{badge} **{gap['skill']}** — {gap['priority']} priority "
                      f"(weight {gap['weight']})")
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/2_careers.py")

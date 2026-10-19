@@ -3,7 +3,7 @@ import streamlit as st
 from core.gaps import get_skill_gaps
 from interview.questions import generate_questions
 from interview.evaluate import evaluate_answer
-from ui.theme import apply_theme, section_title
+from ui.theme import apply_theme, section_title, tool_step_nav
 
 
 # ============================================================
@@ -98,6 +98,7 @@ if not target_career:
         "before starting the mock interview."
     )
 
+    tool_step_nav("pages/6_Interview.py")
     st.stop()
 
 
@@ -138,6 +139,7 @@ if not gaps:
         "can generate gap-based interview questions."
     )
 
+    tool_step_nav("pages/6_Interview.py")
     st.stop()
 
 
@@ -635,3 +637,6 @@ st.progress(
     progress,
     text=f"Interview progress: {current_index}/{total_questions}"
 )
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/6_Interview.py")

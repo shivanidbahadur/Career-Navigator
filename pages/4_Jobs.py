@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from employment.matching import match_jobs
-from ui.theme import apply_theme, section_title
+from ui.theme import apply_theme, section_title, tool_step_nav
 
 st.set_page_config(
     page_title="AI Career Navigator - Jobs",
@@ -70,3 +70,6 @@ for job in results:
             st.write("**Missing skills:** " + ", ".join(job["missing"]))
         else:
             st.success("All required skills matched!")
+
+# ---- Walk the toolkit one tool at a time ----
+tool_step_nav("pages/4_Jobs.py")

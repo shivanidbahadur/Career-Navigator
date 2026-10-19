@@ -6,6 +6,9 @@ with 3D effects (tilting glass cards, floating orbs, animated rings,
 gradient shimmer text). It never reads or writes app logic / session data.
 """
 
+import os
+import re
+
 import streamlit as st
 
 
@@ -177,6 +180,87 @@ def apply_theme():
         }
         .fg-tilt:hover::before { opacity: 1; }
 
+        /* ============ LINKED (CLICKABLE) CARDS ============ */
+        .fg-card {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            border-radius: 22px;
+            cursor: pointer;
+        }
+        .fg-card:link,
+        .fg-card:visited,
+        .fg-card:hover,
+        .fg-card:active {
+            color: inherit;
+            text-decoration: none;
+        }
+        .fg-card:focus-visible {
+            outline: 2px solid rgba(150, 130, 255, .8);
+            outline-offset: 3px;
+        }
+        /* Arrow affordance so a card reads as something you can open. */
+        .fg-card .fg-tilt::after {
+            content: "\\2192";
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 17px;
+            line-height: 1;
+            color: rgba(196, 181, 253, .45);
+            transition: transform .2s ease, color .2s ease;
+        }
+        .fg-card:hover .fg-tilt::after {
+            color: #c4b5fd;
+            transform: translateX(4px);
+        }
+
+        /* ============ TOOL STEP NAVIGATION (bottom of each tool) ============ */
+        .fg-stepnav {
+            margin: 36px 0 12px;
+            padding: 18px 22px 20px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(139,123,255,.12), rgba(79,209,255,.07));
+            border: 1px solid rgba(150,130,255,.24);
+            backdrop-filter: blur(10px);
+        }
+        .fg-stepnav-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .fg-stepnav-chip {
+            font-size: 11.5px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+            border: 1px solid rgba(150,130,255,.35);
+            border-radius: 999px;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+        .fg-stepnav-title {
+            font-weight: 700;
+            font-size: 15.5px;
+            color: var(--ink);
+        }
+        .fg-stepnav-rail {
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+            overflow: hidden;
+        }
+        .fg-stepnav-rail span {
+            display: block;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+            box-shadow: 0 0 18px rgba(139,123,255,.55);
+            transition: width .5s ease;
+        }
+
         .fg-pop { animation: popIn .55s cubic-bezier(.22,.9,.32,1.2) both; }
         @keyframes popIn {
             from { opacity: 0; transform: perspective(800px) translateY(22px) rotateX(7deg) scale(.97); }
@@ -280,11 +364,21 @@ def apply_theme():
             border-color: rgba(160,140,255,.85);
             box-shadow: 0 12px 28px rgba(90,70,220,.35);
         }
-        .stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {
+        .stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"],
+        .stButton > button[data-testid="stBaseButton-primary"],
+        .stDownloadButton > button[data-testid="stBaseButton-primary"] {
             background: linear-gradient(135deg, #6f5cf1, #3fb6ff);
             border: none;
-            color: white !important;
+            color: #fff !important;
             box-shadow: 0 12px 30px rgba(95,80,235,.45);
+            text-shadow: 0 1px 2px rgba(10, 12, 40, .45);
+        }
+        /* Keep the label white all the way down the button's inner markup. */
+        .stButton > button[kind="primary"] *,
+        .stButton > button[data-testid="stBaseButton-primary"] *,
+        .stDownloadButton > button[kind="primary"] *,
+        .stDownloadButton > button[data-testid="stBaseButton-primary"] * {
+            color: #fff !important;
         }
 
         div[data-testid="stExpander"] {
@@ -456,6 +550,48 @@ def apply_theme():
 # Reusable presentation snippets (HTML only — no app logic)
 # ------------------------------------------------------------------
 
+# The six Career Toolkit tools, in the order a student should walk them.
+# (icon, title, card description, page script)
+TOOL_STEPS = [
+    (
+        "🎯",
+        "Career Recommendations",
+        "Find career paths that match your profile, skills and interests.",
+        "pages/2_careers.py",
+    ),
+    (
+        "📊",
+        "Skill-Gap Analysis",
+        "Understand the skills you already have and the areas you need to improve.",
+        "pages/7_Dashboard.py",
+    ),
+    (
+        "🗺️",
+        "Learning Roadmap",
+        "Follow a personalized step-by-step plan toward your target career.",
+        "pages/3_Roadmap.py",
+    ),
+    (
+        "💼",
+        "Jobs & Internships",
+        "Explore opportunities that match your career profile.",
+        "pages/4_Jobs.py",
+    ),
+    (
+        "📄",
+        "Resume Builder",
+        "Create a professional, ATS-friendly resume.",
+        "pages/5_Resume.py",
+    ),
+    (
+        "🎤",
+        "AI Mock Interview",
+        "Practice personalized interview questions and receive feedback.",
+        "pages/6_Interview.py",
+    ),
+]
+
+
 def section_title(title: str, emoji: str = ""):
     """Animated section heading with a glowing gradient bar."""
     st.markdown(
@@ -469,18 +605,95 @@ def section_title(title: str, emoji: str = ""):
     )
 
 
-def tilt_card(icon: str, title: str, text: str, delay: str = ""):
-    """3D tilting glass card (cursor-reactive via the injected JS)."""
-    st.markdown(
-        f"""
+def page_url(script_path: str) -> str:
+    """
+    URL path Streamlit serves a page script on: the file name without its
+    ordering prefix and extension, so 'pages/3_Roadmap.py' -> '/Roadmap'.
+    """
+    name = os.path.splitext(os.path.basename(script_path))[0]
+    return "/" + re.sub(r"^\d+[_-]?", "", name)
+
+
+def tilt_card(
+    icon: str,
+    title: str,
+    text: str,
+    delay: str = "",
+    page: str | None = None,
+):
+    """
+    3D tilting glass card (cursor-reactive via the injected JS).
+
+    Pass `page` (a script path such as 'pages/3_Roadmap.py') to make the
+    whole card open that page when clicked.
+    """
+    card = f"""
         <div class="fg-tilt fg-pop {delay}" style="min-height:158px; margin-bottom:18px;">
             <div class="fg-icon">{icon}</div>
             <div class="fg-title">{title}</div>
             <div class="fg-text">{text}</div>
         </div>
-        """,
-        unsafe_allow_html=True,
+        """
+
+    if page:
+        card = f'<a class="fg-card" href="{page_url(page)}">{card}</a>'
+
+    st.markdown(card, unsafe_allow_html=True)
+
+
+def tool_step_nav(current_page: str):
+    """
+    Bottom-of-page walkthrough for the six Career Toolkit tools.
+
+    Shows "Tool N of 6" with a progress rail, then Previous / Next buttons
+    that open the neighbouring tool with st.switch_page — so a student can
+    move down the toolkit one tool at a time instead of hunting the sidebar.
+
+    Call it once, at the very end of a tool page, e.g.
+    `tool_step_nav("pages/3_Roadmap.py")`.
+    """
+    scripts = [page for _, _, _, page in TOOL_STEPS]
+    if current_page not in scripts:
+        return
+
+    index = scripts.index(current_page)
+    total = len(TOOL_STEPS)
+    icon, title, _, _ = TOOL_STEPS[index]
+
+    prev_step = TOOL_STEPS[index - 1] if index > 0 else None
+    next_step = TOOL_STEPS[index + 1] if index + 1 < total else None
+
+    key = re.sub(r"\W+", "_", os.path.splitext(os.path.basename(current_page))[0])
+    pct = round((index + 1) / total * 100, 2)
+
+    st.html(
+        f'<div class="fg-stepnav fg-rise">'
+        f'<div class="fg-stepnav-top">'
+        f'<span class="fg-stepnav-chip">Tool {index + 1} of {total}</span>'
+        f'<span class="fg-stepnav-title">{icon} {title}</span>'
+        f"</div>"
+        f'<div class="fg-stepnav-rail"><span style="width:{pct}%"></span></div>'
+        f"</div>"
     )
+
+    back_col, next_col = st.columns(2, gap="small")
+
+    with back_col:
+        back_label = f"← {prev_step[1]}" if prev_step else "← Back to Toolkit"
+        back_page = prev_step[3] if prev_step else "app.py"
+        if st.button(back_label, key=f"stepnav_back_{key}", use_container_width=True):
+            st.switch_page(back_page)
+
+    with next_col:
+        next_label = f"{next_step[1]} →" if next_step else "Finish · Back to Toolkit"
+        next_page = next_step[3] if next_step else "app.py"
+        if st.button(
+            next_label,
+            key=f"stepnav_next_{key}",
+            type="primary",
+            use_container_width=True,
+        ):
+            st.switch_page(next_page)
 
 
 def stat_card(label: str, value: str):
