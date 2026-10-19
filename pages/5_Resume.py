@@ -1,4 +1,4 @@
-import streamlit as st
+﻿import streamlit as st
 import sys
 import os
 
@@ -10,7 +10,7 @@ from ui.theme import apply_theme, section_title, tool_step_nav
 
 st.set_page_config(
     page_title="AI Career Navigator - Resume",
-    page_icon="📄",
+    page_icon="ðŸ“„",
     layout="wide",
 )
 apply_theme()
@@ -18,7 +18,7 @@ apply_theme()
 st.markdown(
     """
     <div class="fg-hero fg-rise" style="padding:34px 38px; margin-bottom:24px;">
-        <div class="fg-eyebrow">✦ Resume Studio</div>
+        <div class="fg-eyebrow">âœ¦ Resume Studio</div>
         <h1 style="font-size:clamp(30px,3.6vw,46px);">Build a resume that <span class="fg-gradient-text">gets noticed</span>.</h1>
         <p style="font-size:15.5px;">
             Add projects, generate a clean ATS-friendly resume, and get
@@ -38,7 +38,7 @@ init_state()
 
 user_profile = st.session_state.get("profile", {})
 
-# A resume needs the student's real name — ask them to complete the
+# A resume needs the student's real name â€” ask them to complete the
 # Profile page if they haven't yet.
 if not user_profile.get("name"):
     st.warning(
@@ -60,23 +60,32 @@ def _as_project(p):
         "description": p.get("description", ""),
     }
 
-
 # Projects added here on the Resume page are kept in their own list so
 # the shared Profile data stays untouched; they're merged in for the
 # resume view only.
 if "resume_extra_projects" not in st.session_state:
     st.session_state["resume_extra_projects"] = []
+# Ensure roadmap / session skills sync directly into resume profile
+# Ensure roadmap / session skills sync directly into resume profile
+active_skills = st.session_state.get("skills", user_profile.get("skills", []))
 
 resume_profile = {
     "name": user_profile.get("name", ""),
     "email": user_profile.get("email", ""),
+    "phone": user_profile.get("phone", ""),
+    "linkedin": user_profile.get("linkedin", ""),
+    "github": user_profile.get("github", ""),
     "degree": user_profile.get("degree", ""),
+    "institution": user_profile.get("institution", ""),
     "branch": user_profile.get("branch", ""),
     "grad_year": user_profile.get("grad_year", ""),
-    "skills": user_profile.get("skills", []),
+    "experience_title": user_profile.get("experience_title", ""),
+    "experience_company": user_profile.get("experience_company", ""),
+    "experience_desc": user_profile.get("experience_desc", ""),
+    "skills": active_skills,
     "projects": [_as_project(p) for p in user_profile.get("projects", [])]
     + st.session_state["resume_extra_projects"],
-    "experience": user_profile.get("experience", "Fresher"),
+    "certifications": user_profile.get("certifications", []),
 }
 
 # Use the student's chosen target career if they set one on the
@@ -84,21 +93,28 @@ resume_profile = {
 career_id = user_profile.get("target_career") or "data_analyst"
 
 # Keep the session key in sync for any other modules that read it.
-st.session_state.resume_profile = resume_profile
-
-profile = st.session_state.resume_profile
+st.session_state["resume_profile"] = resume_profile
+profile = resume_profile
 
 st.caption(
-    f"📄 Built from your Profile: **{profile['name']}** • "
-    f"{profile['email'] or 'no email yet'} • "
-    f"{len(profile['skills'])} skills • "
+    f"ðŸ“„ Built from your Profile: **{profile['name']}** â€¢ "
+    f"{profile['email'] or 'no email yet'} â€¢ "
+    f"{len(profile['skills'])} skills â€¢ "
     f"{len(profile['projects'])} projects"
 )
 
 st.subheader("Add a Project")
 with st.form("project_form", clear_on_submit=True):
-    proj_title = st.text_input("Project Title")
-    proj_desc = st.text_area("Project Description")
+
+    proj_title = st.text_input(
+        "Project Title",
+        max_chars=100
+    )
+    proj_desc = st.text_area(
+        "Project Description",
+        max_chars=2000
+    )
+
     submitted = st.form_submit_button("Add Project")
     if submitted and proj_title:
         st.session_state["resume_extra_projects"].append(
@@ -123,8 +139,7 @@ st.session_state["resume_html"] = resume_html
 st.session_state["resume_generated"] = True
 
 st.subheader("Preview")
-st.iframe(st.session_state["resume_html"], height=500)
-
+st.components.v1.html(resume_html, height=800, scrolling=True)
 st.download_button(
     label="Download Resume (HTML)",
     data=st.session_state["resume_html"],
@@ -142,4 +157,3 @@ else:
 
 # ---- Walk the toolkit one tool at a time ----
 tool_step_nav("pages/5_Resume.py")
-

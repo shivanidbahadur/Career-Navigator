@@ -16,5 +16,10 @@
   {"job_id": "j15", "title": "Machine Learning Intern", "company": "QuantEdge", "type": "internship", "location": "Remote", "required_skills": ["Python", "Machine Learning", "Statistics"]},
   {"job_id": "j16", "title": "Software Engineer Intern", "company": "Nimbus Tech", "type": "internship", "location": "Bangalore", "required_skills": ["Python", "Git", "JavaScript"]},
   {"job_id": "j17", "title": "Cloud Solutions Intern", "company": "SkyStack Cloud", "type": "internship", "location": "Pune", "required_skills": ["AWS", "Linux", "Git"]},
-  {"job_id": "j18", "title": "React Developer", "company": "Webforge", "type": "job", "location": "Remote", "required_skills": ["JavaScript", "React", "HTML", "CSS", "Git"]}
+  {"job_id": "j18", "title": "React Developer", "company": "Webforge", "type": "job", "location": "Remote", "required_skills": ["JavaScript", "React", "HTML", "CSS", "Git"]},
+  {"job_id": "j19", "title": "Cybersecurity Analyst Intern", "company": "SecureGuard", "type": "internship", "location": "Mumbai", "required_skills": ["Security", "Networking", "Linux"]},
+  {"job_id": "j20", "title": "Blockchain Developer", "company": "ChainWorks", "type": "job", "location": "Bangalore", "required_skills": ["Smart Contracts", "Solidity", "Cryptography"]},
+  {"job_id": "j21", "title": "Mobile App Developer", "company": "AppCraft", "type": "job", "location": "Hyderabad", "required_skills": ["Mobile Development", "Java", "Kotlin"]},
+  {"job_id": "j22", "title": "UI/UX Design Intern", "company": "DesignStudio", "type": "internship", "location": "Remote", "required_skills": ["UI Design", "UX Research", "Wireframing"]},
+  {"job_id": "j23", "title": "SRE Engineer", "company": "SkyStack Cloud", "type": "job", "location": "Pune", "required_skills": ["Linux", "Automation & Scripting", "Incident Management"]}
 ]

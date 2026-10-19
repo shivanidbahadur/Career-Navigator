@@ -6,6 +6,7 @@ with 3D effects (tilting glass cards, floating orbs, animated rings,
 gradient shimmer text). It never reads or writes app logic / session data.
 """
 
+import json
 import os
 import re
 
@@ -180,37 +181,82 @@ def apply_theme():
         }
         .fg-tilt:hover::before { opacity: 1; }
 
-        /* ============ LINKED (CLICKABLE) CARDS ============ */
-        .fg-card {
+        /* ============ CLICKABLE TOOLKIT CARDS ============ */
+        /* A card is a real st.page_link anchor, so a click routes inside
+           the app (no reload, no lost login). The icon and description are
+           injected by tilt_card() as per-card CSS. */
+        [data-testid="stPageLink"] {
+            margin-bottom: 18px;
+        }
+        [data-testid="stPageLink"] > div {
+            align-items: stretch !important;
+        }
+        [data-testid="stPageLink"] a {
             display: block;
-            color: inherit;
-            text-decoration: none;
+            height: 100%;
+            min-height: 196px;
+            padding: 24px;
             border-radius: 22px;
-            cursor: pointer;
+            background: linear-gradient(150deg, rgba(255,255,255,.075), rgba(255,255,255,.03) 55%);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 18px 44px rgba(4, 8, 30, .45);
+            color: var(--ink) !important;
+            text-decoration: none !important;
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
         }
-        .fg-card:link,
-        .fg-card:visited,
-        .fg-card:hover,
-        .fg-card:active {
-            color: inherit;
-            text-decoration: none;
+        [data-testid="stPageLink"] a:hover {
+            transform: translateY(-4px);
+            border-color: rgba(150, 130, 255, .45);
+            box-shadow: 0 26px 60px rgba(80, 60, 220, .30);
         }
-        .fg-card:focus-visible {
+        [data-testid="stPageLink"] a:focus-visible {
             outline: 2px solid rgba(150, 130, 255, .8);
             outline-offset: 3px;
         }
+        /* Card icon chip, from each card's own CSS rule. */
+        [data-testid="stPageLink"] a::before {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 18px;
+            font-size: 22px;
+            border-radius: 14px;
+            background: linear-gradient(150deg, rgba(139,123,255,.28), rgba(79,209,255,.14));
+            border: 1px solid rgba(150,130,255,.32);
+        }
+        /* Card title. */
+        [data-testid="stPageLink"] a p {
+            margin: 0 0 10px !important;
+            font-family: 'Sora', 'Space Grotesk', sans-serif;
+            font-size: 18.5px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #f4f5ff !important;
+        }
+        /* Card description, from each card's own CSS rule. */
+        [data-testid="stPageLink"] a::after {
+            display: block;
+            color: var(--ink-dim);
+            font-size: 14.5px;
+            line-height: 1.5;
+        }
         /* Arrow affordance so a card reads as something you can open. */
-        .fg-card .fg-tilt::after {
+        [data-testid="stPageLink"] a > span:first-child::after {
             content: "\\2192";
             position: absolute;
-            top: 20px;
-            right: 24px;
+            top: 26px;
+            right: 26px;
             font-size: 17px;
             line-height: 1;
             color: rgba(196, 181, 253, .45);
             transition: transform .2s ease, color .2s ease;
         }
-        .fg-card:hover .fg-tilt::after {
+        [data-testid="stPageLink"] a:hover > span:first-child::after {
             color: #c4b5fd;
             transform: translateX(4px);
         }
@@ -622,23 +668,34 @@ def tilt_card(
     page: str | None = None,
 ):
     """
-    3D tilting glass card (cursor-reactive via the injected JS).
+    Glass card. With `page` (a script path such as 'pages/3_Roadmap.py') the
+    card is a real st.page_link, so clicking it anywhere opens that tool
+    inside the running app instead of reloading the page (a reload would
+    drop the session, and with it the login).
 
-    Pass `page` (a script path such as 'pages/3_Roadmap.py') to make the
-    whole card open that page when clicked.
+    Without `page` it is decorative: a 3D tilting card handled by the
+    injected cursor-tilt JS.
     """
-    card = f"""
-        <div class="fg-tilt fg-pop {delay}" style="min-height:158px; margin-bottom:18px;">
-            <div class="fg-icon">{icon}</div>
-            <div class="fg-title">{title}</div>
-            <div class="fg-text">{text}</div>
-        </div>
-        """
-
     if page:
-        card = f'<a class="fg-card" href="{page_url(page)}">{card}</a>'
+        href = page_url(page).lstrip("/")
+        st.html(
+            f'<style>'
+            f'[data-testid="stPageLink-NavLink"][href="{href}"]::before'
+            f' {{ content: "{icon}"; }}'
+            f'[data-testid="stPageLink-NavLink"][href="{href}"]::after'
+            f' {{ content: {json.dumps(text)}; }}'
+            f"</style>"
+        )
+        st.page_link(page, label=title, use_container_width=True)
+        return
 
-    st.markdown(card, unsafe_allow_html=True)
+    st.html(
+        f'<div class="fg-tilt fg-pop {delay}" style="min-height:158px;">'
+        f'<div class="fg-icon">{icon}</div>'
+        f'<div class="fg-title">{title}</div>'
+        f'<div class="fg-text">{text}</div>'
+        f"</div>"
+    )
 
 
 def tool_step_nav(current_page: str):

@@ -10,6 +10,8 @@ from core.skills import normalize_skills, get_effective_skills
 from core.recommend import recommend_careers
 from core.gaps import get_skill_gaps
 from ui.theme import apply_theme, section_title, stat_card, tool_step_nav
+from learning.auth import require_login, show_user_sidebar, save_target_career
+
 
 st.set_page_config(
     page_title="AI Career Navigator - Careers",
@@ -17,6 +19,8 @@ st.set_page_config(
     layout="wide",
 )
 apply_theme()
+require_login()
+show_user_sidebar()
 init_state()
 
 st.markdown(
@@ -101,15 +105,19 @@ st.bar_chart(chart_data)
 section_title("Choose Your Target Career", "🎯")
 
 career_options = {r["name"]: r["career_id"] for r in recommendations}
-chosen_name = st.selectbox("Select a career to focus on:", list(career_options.keys()))
+names = list(career_options.keys())
+ids = list(career_options.values())
+current = profile.get("target_career")
+default_index = ids.index(current) if current in ids else 0
+chosen_name = st.selectbox("Select a career to focus on:", names, index=default_index)
 
 if st.button("Set as my target career"):
-    profile["target_career"] = career_options[chosen_name]
+    save_target_career(career_options[chosen_name], chosen_name)
     st.success(f"Target career set to: {chosen_name}")
 
 # ---- Show skill gaps for the current target career ----
 if profile["target_career"]:
-    section_title(f"Skill Gaps for: {chosen_name}", "🧩")
+    section_title(f"Skill Gaps for: {profile.get('target_career_name') or chosen_name}", "🧩")
 
     gaps = get_skill_gaps(effective_skills, profile["target_career"])
 

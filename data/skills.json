@@ -45,7 +45,15 @@
     "biz requirements": "Requirements Gathering",
     "mobile dev": "Mobile Development", "android dev": "Mobile Development",
     "ios dev": "Mobile Development",
-    "ui/ux": "UI Design", "ux design": "UI Design"
+    "ui/ux": "UI Design", "ux design": "UI Design",
+    "spark": "Apache Spark", "apache-spark": "Apache Spark",
+    "airflow": "Apache Airflow", "apache-airflow": "Apache Airflow",
+    "ts": "TypeScript", "type-script": "TypeScript",
+    "tf-iac": "Terraform",
+    "solidity lang": "Solidity",
+    "smart contract": "Smart Contracts",
+    "siem": "SIEM Tools", "splunk": "SIEM Tools",
+    "jenkins ci": "Jenkins"
   },
   "prerequisites": {
     "Statistics": ["Python"],
@@ -59,6 +67,13 @@
     "Node.js": ["JavaScript"],
     "Kubernetes": ["Docker"],
     "Ethical Hacking": ["Networking", "Security"],
-    "CI/CD": ["Git", "Docker"]
+    "CI/CD": ["Git", "Docker"],
+    "Apache Spark": ["Python", "SQL"],
+    "Apache Airflow": ["Python", "SQL"],
+    "TypeScript": ["JavaScript"],
+    "Terraform": ["Cloud Computing"],
+    "Smart Contracts": ["Solidity"],
+    "SIEM Tools": ["Security", "Networking"],
+    "Jenkins": ["Git", "CI/CD"]
   }
 }

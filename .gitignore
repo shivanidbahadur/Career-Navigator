@@ -132,3 +132,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local database and session data
+/data/app.db
+/data/sessions.json
