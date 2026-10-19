@@ -1,10 +1,17 @@
+import os
 import sqlite3
 import uuid
 import json
 
-DB_PATH = "data/app.db"
+# Defaults to the local team database. Hosted deploys point this somewhere
+# else (see render.yaml) so the published app starts with an empty database
+# instead of the accounts committed for local use.
+DB_PATH = os.getenv("CAREER_NAV_DB", "data/app.db")
 
 def get_connection():
+    directory = os.path.dirname(DB_PATH)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn

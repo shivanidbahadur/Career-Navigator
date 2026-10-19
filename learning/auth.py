@@ -16,7 +16,8 @@ MIN_PASSWORD_LENGTH = 6
 MAX_NAME_LENGTH = 50
 MAX_EMAIL_LENGTH = 100
 MAX_PASSWORD_BYTES = 72  # bcrypt cannot handle more than 72 bytes
-SESSIONS_FILE = "data/sessions.json"
+# Hosted deploys move this off the committed file (see render.yaml).
+SESSIONS_FILE = os.getenv("CAREER_NAV_SESSIONS", "data/sessions.json")
 COOKIE_NAME = "career_nav_session"
 SESSION_DAYS = 7
 
@@ -81,7 +82,9 @@ def _load_sessions():
 
 
 def _save_sessions(sessions):
-    os.makedirs("data", exist_ok=True)
+    directory = os.path.dirname(SESSIONS_FILE)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
     with open(SESSIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(sessions, f, indent=2)
 

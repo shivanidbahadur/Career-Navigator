@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: career-navigator
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      # The published app starts with an empty database instead of the
+      # accounts committed for local use (data/app.db).
+      - key: CAREER_NAV_DB
+        value: var/app.db
+      - key: CAREER_NAV_SESSIONS
+        value: var/sessions.json
+      # Set this in the Render dashboard; never commit it.
+      - key: ANTHROPIC_API_KEY
+        sync: false

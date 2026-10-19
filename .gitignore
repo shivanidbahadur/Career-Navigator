@@ -136,3 +136,5 @@ __marimo__/
 # Local database and session data
 /data/app.db
 /data/sessions.json
+# Deploy runtime data (Render/ephemeral disk)
+/var/
